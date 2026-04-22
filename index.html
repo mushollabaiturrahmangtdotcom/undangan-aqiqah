@@ -32,6 +32,63 @@
             overflow: hidden;
         }
 
+        /* ===== MUSIC PLAYER ===== */
+        #musicPlayer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9998;
+            display: none; /* hidden until invitation opened */
+        }
+
+        .music-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: 2px solid var(--accent);
+            color: var(--light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(26, 77, 46, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(26, 77, 46, 0.5);
+        }
+
+        .music-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--light);
+            transition: opacity 0.2s;
+        }
+
+        /* Rotating vinyl ring when playing */
+        .music-btn::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px dashed var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .music-btn.playing::before {
+            opacity: 1;
+            animation: spin-ring 4s linear infinite;
+        }
+
+        @keyframes spin-ring {
+            to { transform: rotate(360deg); }
+        }
+
         /* Cover Page */
         #coverPage {
             position: fixed;
@@ -1016,6 +1073,11 @@
             .denah-grid {
                 grid-template-columns: 1fr;
             }
+
+            #musicPlayer {
+                bottom: 15px;
+                right: 15px;
+            }
         }
 
         /* Smooth Scroll */
@@ -1037,13 +1099,34 @@
     </style>
 </head>
 <body>
+
+    <!-- ===== AUDIO ELEMENT ===== -->
+    <!-- Pastikan file lagu/latar.mp3 ada di folder yang sama dengan file HTML ini -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="lagu/latar.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ===== MUSIC PLAYER BUTTON (muncul setelah undangan dibuka) ===== -->
+    <div id="musicPlayer">
+        <button class="music-btn playing" id="musicBtn" onclick="toggleMusic()" title="Play/Pause Musik">
+            <!-- Icon Play -->
+            <svg id="iconPlay" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <!-- Icon Pause -->
+            <svg id="iconPause" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+        </button>
+    </div>
+
     <!-- Cover Page -->
     <div id="coverPage">
         <div class="cover-ornament-top"></div>
         <div class="cover-ornament-bottom"></div>
         <div class="cover-content">
             <div class="cover-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-            <div class="cover-salam"> <i>Assalaamu’alaikum Warahmatullahi Wabarakatuh</i></div>
+            <div class="cover-salam"> <i>Assalaamu'alaikum Warahmatullahi Wabarakatuh</i></div>
             <h1 class="cover-title">Tasmiyah dan Aqiqah</h1>
             <div class="cover-divider"></div>
             <p class="cover-baby-name">MUHAMMAD ZULFIKAR</p>
@@ -1072,7 +1155,7 @@
             </div>
 
             <button class="open-button" onclick="openInvitation()">
-                <span>Buka Undangan</span>
+                <span>🎵 Buka Undangan</span>
             </button>
 
             <div class="cover-footer">
@@ -1232,7 +1315,6 @@
                         <path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/>
                     </svg>
                     <p>Peta Area 1</p>
-                    <!-- <img src="path-to-denah-1.jpg" alt="Denah 1"> -->
                 </div>
             </div>
             <div class="denah-item">
@@ -1241,7 +1323,6 @@
                         <path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/>
                     </svg>
                     <p>Peta Area 2</p>
-                    <!-- <img src="path-to-denah-2.jpg" alt="Denah 2"> -->
                 </div>
             </div>
             <div class="denah-item">
@@ -1250,7 +1331,6 @@
                         <path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/>
                     </svg>
                     <p>Peta Jalan</p>
-                    <!-- <img src="path-to-denah-3.jpg" alt="Denah 3"> -->
                 </div>
             </div>
             <div class="denah-item">
@@ -1259,7 +1339,6 @@
                         <path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/>
                     </svg>
                     <p>Detail Rumah</p>
-                    <!-- <img src="path-to-denah-4.jpg" alt="Denah 4"> -->
                 </div>
             </div>
         </div>
@@ -1288,7 +1367,6 @@
                                 </svg>
                             </div>
                             <p class="barcode-text">Sisipkan QR Code<br>DANA disini</p>
-                            <!-- <img src="path-to-qr-code.png" alt="QR Code DANA"> -->
                         </div>
                     </div>
                     <p class="amplop-note">
@@ -1321,12 +1399,10 @@
     </footer>
 
     <script>
-        // Set tanggal acara - Senin, 27 April 2026, jam 08:00 WITA
-        // Format: Tahun, Bulan (0-11), Tanggal, Jam, Menit, Detik
-        // Bulan April = 3 (karena bulan dimulai dari 0)
+        // ===== KONFIGURASI TANGGAL ACARA =====
         const eventDate = new Date(2026, 3, 27, 9, 0, 0);
 
-        // Countdown Timer
+        // ===== COUNTDOWN TIMER =====
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = eventDate.getTime() - now;
@@ -1336,66 +1412,124 @@
                 return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Update DOM elements
-            const daysEl = document.getElementById('days');
-            const hoursEl = document.getElementById('hours');
+            const daysEl    = document.getElementById('days');
+            const hoursEl   = document.getElementById('hours');
             const minutesEl = document.getElementById('minutes');
             const secondsEl = document.getElementById('seconds');
 
-            if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
-            if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+            if (daysEl)    daysEl.textContent    = days.toString().padStart(2, '0');
+            if (hoursEl)   hoursEl.textContent   = hours.toString().padStart(2, '0');
             if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
             if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
         }
 
-        // Initialize countdown when page loads
         document.addEventListener('DOMContentLoaded', function() {
             updateCountdown();
-            // Update countdown setiap detik
             setInterval(updateCountdown, 1000);
         });
-
-        // Also run immediately in case DOMContentLoaded already fired
         updateCountdown();
 
-        // Lock scroll on load
+        // ===== MUSIC CONTROL =====
+        const audio     = document.getElementById('bgMusic');
+        const musicBtn  = document.getElementById('musicBtn');
+        const iconPlay  = document.getElementById('iconPlay');
+        const iconPause = document.getElementById('iconPause');
+        let   isMusicOn = false;
+
+        function playMusic() {
+            // Set volume lembut saat pertama play
+            audio.volume = 0;
+            audio.play().then(function() {
+                isMusicOn = true;
+                // Fade in volume dari 0 ke 0.7
+                fadeVolume(0, 0.7, 2000);
+                updateMusicUI(true);
+            }).catch(function(err) {
+                console.log('Audio play failed:', err);
+            });
+        }
+
+        function toggleMusic() {
+            if (isMusicOn) {
+                // Fade out lalu pause
+                fadeVolume(audio.volume, 0, 800, function() {
+                    audio.pause();
+                    isMusicOn = false;
+                    updateMusicUI(false);
+                });
+            } else {
+                audio.play().then(function() {
+                    isMusicOn = true;
+                    fadeVolume(0, 0.7, 800);
+                    updateMusicUI(true);
+                });
+            }
+        }
+
+        function updateMusicUI(playing) {
+            if (playing) {
+                musicBtn.classList.add('playing');
+                iconPlay.style.display  = 'none';
+                iconPause.style.display = 'block';
+            } else {
+                musicBtn.classList.remove('playing');
+                iconPlay.style.display  = 'block';
+                iconPause.style.display = 'none';
+            }
+        }
+
+        // Smooth fade volume
+        function fadeVolume(from, to, duration, callback) {
+            const steps    = 20;
+            const stepTime = duration / steps;
+            const diff     = to - from;
+            let   current  = from;
+            let   step     = 0;
+
+            const timer = setInterval(function() {
+                step++;
+                current = from + (diff * step / steps);
+                audio.volume = Math.min(1, Math.max(0, current));
+                if (step >= steps) {
+                    clearInterval(timer);
+                    if (callback) callback();
+                }
+            }, stepTime);
+        }
+
+        // ===== OPEN INVITATION =====
         document.body.classList.add('no-scroll');
 
-        // Open Invitation Function
         function openInvitation() {
-            // Play audio jika ada (optional)
-            // const audio = document.getElementById('bgMusic');
-            // audio.play();
-
-            // Hide cover page
+            // Sembunyikan cover page
             document.getElementById('coverPage').classList.add('hidden');
             
-            // Remove scroll lock
-            document.body.classList.remove('no-scroll');
+            // Tampilkan tombol musik
+            document.getElementById('musicPlayer').style.display = 'block';
             
-            // Show loading screen briefly
+            // Hapus scroll lock
+            document.body.classList.remove('no-scroll');
+
+            // Mulai putar musik dengan fade in
+            playMusic();
+
+            // Sembunyikan loading screen setelah 1.5 detik
             setTimeout(function() {
                 document.getElementById('loading').classList.add('hidden');
             }, 1500);
         }
 
-        // Loading Screen (for subsequent sections)
-        window.addEventListener('load', function() {
-            // Keep loading screen visible until user clicks open button
-            // It will be hidden by openInvitation function
-        });
-
-        // Scroll Reveal Animation
+        // ===== SCROLL REVEAL =====
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
             for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
+                var windowHeight   = window.innerHeight;
+                var elementTop     = reveals[i].getBoundingClientRect().top;
                 var elementVisible = 150;
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add('active');
@@ -1404,7 +1538,7 @@
         }
 
         window.addEventListener('scroll', reveal);
-        reveal(); // Initial check
+        reveal();
     </script>
 </body>
 </html>
