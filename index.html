@@ -115,27 +115,217 @@
         @keyframes fadeInOut { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* HERO */
-        .hero { min-height: 100vh; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .ornament { position: absolute; pointer-events: none; }
-        .ornament-top-left { top: 0; left: 0; width: 300px; height: 300px; background: radial-gradient(circle at top left, rgba(201,169,97,0.15) 0%, transparent 70%); }
-        .ornament-bottom-right { bottom: 0; right: 0; width: 400px; height: 400px; background: radial-gradient(circle at bottom right, rgba(201,169,97,0.15) 0%, transparent 70%); }
-        .hero-content { text-align: center; color: var(--light); z-index: 1; padding: 2rem; max-width: 800px; animation: fadeInUp 1s ease-out; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .bismillah { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; margin-bottom: 3rem; letter-spacing: 2px; opacity: 0; animation: fadeIn 1s ease-out 0.3s forwards; }
+        /* ============================================================
+           HERO — Redesign estetik mewah
+        ============================================================ */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(160deg, #0d2d1a 0%, #1a4d2e 45%, #2a6040 100%);
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Lapisan tekstur noise halus */
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 0;
+        }
+
+        /* Cahaya tengah (vignette terbalik) */
+        .hero::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 45%, rgba(201,169,97,0.08) 0%, transparent 70%);
+            pointer-events: none; z-index: 0;
+        }
+
+        /* Ornamen sudut — garis Art Deco */
+        .hero-corner {
+            position: absolute; width: 140px; height: 140px;
+            pointer-events: none; z-index: 1; opacity: 0.35;
+        }
+        .hero-corner-tl { top: 24px; left: 24px; }
+        .hero-corner-tr { top: 24px; right: 24px; transform: scaleX(-1); }
+        .hero-corner-bl { bottom: 24px; left: 24px; transform: scaleY(-1); }
+        .hero-corner-br { bottom: 24px; right: 24px; transform: scale(-1); }
+        .hero-corner svg { width: 100%; height: 100%; }
+
+        /* Garis horizontal tipis atas & bawah */
+        .hero-line-top, .hero-line-bottom {
+            position: absolute; left: 10%; right: 10%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,169,97,0.4), transparent);
+            pointer-events: none; z-index: 1;
+        }
+        .hero-line-top  { top: 18px; }
+        .hero-line-bottom { bottom: 18px; }
+
+        /* Konten utama */
+        .hero-content {
+            text-align: center; color: var(--light);
+            z-index: 2; padding: 3rem 2rem;
+            max-width: 720px; width: 100%;
+        }
+
+        /* Badge atas — label kecil */
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(201,169,97,0.12);
+            border: 1px solid rgba(201,169,97,0.35);
+            border-radius: 100px;
+            padding: 0.35rem 1rem;
+            margin-bottom: 1.8rem;
+            opacity: 0; animation: fadeInDown 0.8s ease-out 0.2s forwards;
+        }
+        .hero-badge-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent);
+            animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+        .hero-badge span {
+            font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
+            color: var(--accent); font-weight: 500;
+        }
+
+        /* Bismillah */
+        .bismillah {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem; font-weight: 300;
+            margin-bottom: 0.6rem; letter-spacing: 3px;
+            opacity: 0; animation: fadeIn 1s ease-out 0.5s forwards;
+            text-shadow: 0 2px 20px rgba(201,169,97,0.25);
+        }
         @keyframes fadeIn { to { opacity: 1; } }
-        .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; opacity: 0; animation: fadeIn 1s ease-out 0.6s forwards; }
-        .divider { width: 100px; height: 2px; background: var(--accent); margin: 2rem auto; position: relative; opacity: 0; animation: expandWidth 1s ease-out 1.2s forwards; }
-        @keyframes expandWidth { from { opacity: 0; width: 0; } to { opacity: 1; width: 100px; } }
-        .divider::before, .divider::after { content: '◆'; position: absolute; color: var(--accent); font-size: 0.8rem; top: 50%; transform: translateY(-50%); }
-        .divider::before { left: -30px; }
-        .divider::after { right: -30px; }
-        .hero-date { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-top: 2rem; opacity: 0; animation: fadeIn 1s ease-out 1.5s forwards; }
-        .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); opacity: 0; animation: fadeIn 1s ease-out 1.8s forwards, bounce 2s infinite 2.8s; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
-        .scroll-indicator::before { content: ''; display: block; width: 30px; height: 50px; border: 2px solid var(--light); border-radius: 15px; margin: 0 auto 10px; }
-        .scroll-indicator::after { content: ''; position: absolute; width: 6px; height: 10px; background: var(--light); border-radius: 3px; top: 8px; left: 50%; transform: translateX(-50%); animation: scrollDown 2s infinite; }
-        @keyframes scrollDown { 0% { top: 8px; opacity: 1; } 100% { top: 28px; opacity: 0; } }
+        @keyframes fadeInDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+        /* Icon bulan bintang */
+        .hero-icon {
+            margin: 0.2rem auto 0.8rem;
+            opacity: 0; animation: fadeIn 1s ease-out 0.7s forwards;
+        }
+        .hero-icon svg { width: 52px; height: 52px; filter: drop-shadow(0 0 10px rgba(201,169,97,0.5)); }
+
+        /* Garis pemisah ornamental */
+        .hero-ornament-line {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.6rem; margin: 1rem auto;
+            opacity: 0; animation: fadeIn 1s ease-out 0.9s forwards;
+        }
+        .hero-ornament-line::before,
+        .hero-ornament-line::after {
+            content: '';
+            flex: 1; max-width: 80px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent));
+        }
+        .hero-ornament-line::after {
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+        .hero-ornament-line span {
+            color: var(--accent); font-size: 1rem; line-height: 1;
+        }
+
+        /* Judul utama */
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.6rem; font-weight: 700;
+            line-height: 1.15; margin-bottom: 0.5rem;
+            opacity: 0; animation: fadeIn 1s ease-out 1s forwards;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        .hero-title-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem; font-weight: 300;
+            letter-spacing: 4px; text-transform: uppercase;
+            color: rgba(248,246,241,0.7);
+            opacity: 0; animation: fadeIn 1s ease-out 1.1s forwards;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Tanggal dalam kotak elegan */
+        .hero-date-box {
+            display: inline-flex; flex-direction: column; align-items: center;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(201,169,97,0.3);
+            border-radius: 12px;
+            padding: 0.9rem 2.2rem;
+            margin-top: 0.5rem;
+            opacity: 0; animation: fadeIn 1s ease-out 1.3s forwards;
+            backdrop-filter: blur(6px);
+        }
+        .hero-date-label {
+            font-size: 0.62rem; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--accent);
+            margin-bottom: 0.3rem; font-weight: 500;
+        }
+        .hero-date-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem; font-weight: 600; letter-spacing: 1px;
+        }
+        .hero-date-hijri {
+            font-size: 0.72rem; color: rgba(248,246,241,0.6);
+            margin-top: 0.2rem; letter-spacing: 0.5px;
+        }
+
+        /* Nama bayi besar di bawah */
+        .hero-baby-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem; letter-spacing: 5px;
+            text-transform: uppercase; color: var(--accent);
+            margin-top: 1.8rem;
+            opacity: 0; animation: fadeIn 1s ease-out 1.5s forwards;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute; bottom: 36px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+            opacity: 0; animation: fadeIn 1s ease-out 2s forwards;
+            z-index: 2;
+        }
+        .scroll-indicator span {
+            font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(248,246,241,0.5);
+        }
+        .scroll-arrow {
+            width: 28px; height: 28px;
+            border: 1px solid rgba(201,169,97,0.4);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            animation: bounceArrow 2s ease-in-out infinite 2.5s;
+        }
+        .scroll-arrow svg { width: 14px; height: 14px; fill: var(--accent); }
+        @keyframes bounceArrow {
+            0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)}
+        }
+
+        /* Ornamen: partikel bintang melayang */
+        .hero-star {
+            position: absolute; pointer-events: none; z-index: 1;
+            width: 4px; height: 4px; border-radius: 50%;
+            background: var(--accent); opacity: 0;
+            animation: floatStar var(--dur, 6s) ease-in-out infinite var(--delay, 0s);
+        }
+        @keyframes floatStar {
+            0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+            20%  { opacity: 0.6; }
+            80%  { opacity: 0.4; }
+            100% { opacity: 0; transform: translateY(-60px) scale(1.2); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title   { font-size: 2.4rem; }
+            .bismillah    { font-size: 1.9rem; }
+            .hero-corner  { width: 80px; height: 80px; }
+            .hero-corner-tl { top: 12px; left: 12px; }
+            .hero-corner-tr { top: 12px; right: 12px; }
+            .hero-corner-bl { bottom: 12px; left: 12px; }
+            .hero-corner-br { bottom: 12px; right: 12px; }
+        }
 
         section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; text-align: center; color: var(--primary); margin-bottom: 1rem; }
@@ -425,15 +615,109 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="ornament ornament-top-left"></div>
-        <div class="ornament ornament-bottom-right"></div>
-        <div class="hero-content">
-            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-            <h1 class="hero-title"><span>Undangan <br>Aqiqah dan Tasmiyah</span></h1>
-            <div class="divider"></div>
-            <p class="hero-date">Senin, 27 April 2026</p>
+
+        <!-- Ornamen sudut Art Deco -->
+        <div class="hero-corner hero-corner-tl">
+            <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2 L2 60 M2 2 L60 2" stroke="#c9a961" stroke-width="1.5"/>
+                <path d="M12 2 L12 50 M2 12 L50 12" stroke="#c9a961" stroke-width="0.6" opacity="0.5"/>
+                <path d="M22 2 L22 30 M2 22 L30 22" stroke="#c9a961" stroke-width="0.4" opacity="0.3"/>
+                <circle cx="2" cy="2" r="3" fill="#c9a961"/>
+                <path d="M35 2 L2 35" stroke="#c9a961" stroke-width="0.4" opacity="0.3"/>
+            </svg>
         </div>
-        <div class="scroll-indicator"></div>
+        <div class="hero-corner hero-corner-tr">
+            <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2 L2 60 M2 2 L60 2" stroke="#c9a961" stroke-width="1.5"/>
+                <path d="M12 2 L12 50 M2 12 L50 12" stroke="#c9a961" stroke-width="0.6" opacity="0.5"/>
+                <path d="M22 2 L22 30 M2 22 L30 22" stroke="#c9a961" stroke-width="0.4" opacity="0.3"/>
+                <circle cx="2" cy="2" r="3" fill="#c9a961"/>
+            </svg>
+        </div>
+        <div class="hero-corner hero-corner-bl">
+            <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2 L2 60 M2 2 L60 2" stroke="#c9a961" stroke-width="1.5"/>
+                <path d="M12 2 L12 50 M2 12 L50 12" stroke="#c9a961" stroke-width="0.6" opacity="0.5"/>
+                <path d="M22 2 L22 30 M2 22 L30 22" stroke="#c9a961" stroke-width="0.4" opacity="0.3"/>
+                <circle cx="2" cy="2" r="3" fill="#c9a961"/>
+            </svg>
+        </div>
+        <div class="hero-corner hero-corner-br">
+            <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2 L2 60 M2 2 L60 2" stroke="#c9a961" stroke-width="1.5"/>
+                <path d="M12 2 L12 50 M2 12 L50 12" stroke="#c9a961" stroke-width="0.6" opacity="0.5"/>
+                <path d="M22 2 L22 30 M2 22 L30 22" stroke="#c9a961" stroke-width="0.4" opacity="0.3"/>
+                <circle cx="2" cy="2" r="3" fill="#c9a961"/>
+            </svg>
+        </div>
+
+        <!-- Garis tipis atas bawah -->
+        <div class="hero-line-top"></div>
+        <div class="hero-line-bottom"></div>
+
+        <!-- Bintang melayang -->
+        <div class="hero-star" style="left:10%;top:20%;--dur:7s;--delay:0s"></div>
+        <div class="hero-star" style="left:20%;top:60%;--dur:9s;--delay:1s"></div>
+        <div class="hero-star" style="left:80%;top:30%;--dur:8s;--delay:2s"></div>
+        <div class="hero-star" style="left:75%;top:70%;--dur:6s;--delay:0.5s"></div>
+        <div class="hero-star" style="left:45%;top:15%;--dur:10s;--delay:3s"></div>
+        <div class="hero-star" style="left:60%;top:80%;--dur:7.5s;--delay:1.5s"></div>
+
+        <!-- Konten -->
+        <div class="hero-content">
+
+            <!-- Badge atas -->
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                <span>Undangan Resmi</span>
+            </div>
+
+            <!-- Bismillah -->
+            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+
+            <!-- Icon Bulan Bintang -->
+            <div class="hero-icon">
+                <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Bintang 8 sudut -->
+                    <path d="M40 8 L43.5 30 L64 20 L49 36 L72 40 L49 44 L64 60 L43.5 50 L40 72 L36.5 50 L16 60 L31 44 L8 40 L31 36 L16 20 L36.5 30 Z" fill="rgba(201,169,97,0.15)" stroke="#c9a961" stroke-width="1"/>
+                    <!-- Lingkaran tengah -->
+                    <circle cx="40" cy="40" r="10" fill="rgba(201,169,97,0.2)" stroke="#c9a961" stroke-width="1"/>
+                    <!-- Titik pusat -->
+                    <circle cx="40" cy="40" r="3" fill="#c9a961"/>
+                    <!-- 4 titik kecil diagonal -->
+                    <circle cx="40" cy="24" r="1.5" fill="#c9a961" opacity="0.6"/>
+                    <circle cx="40" cy="56" r="1.5" fill="#c9a961" opacity="0.6"/>
+                    <circle cx="24" cy="40" r="1.5" fill="#c9a961" opacity="0.6"/>
+                    <circle cx="56" cy="40" r="1.5" fill="#c9a961" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <!-- Garis ornamental -->
+            <div class="hero-ornament-line"><span>✦</span></div>
+
+            <!-- Judul -->
+            <h1 class="hero-title">Undangan<br>Aqiqah & Tasmiyah</h1>
+            <p class="hero-title-sub">Putra Pertama Kami</p>
+
+            <!-- Kotak tanggal -->
+            <div class="hero-date-box">
+                <span class="hero-date-label">📅 Hari Pelaksanaan</span>
+                <span class="hero-date-text">Senin, 27 April 2026</span>
+                <span class="hero-date-hijri">29 Syawal 1447 H • Pukul 09.00 WITA</span>
+            </div>
+
+            <!-- Nama bayi -->
+            <p class="hero-baby-name">✦ Muhammad Zulfikar ✦</p>
+
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <span>Geser ke bawah</span>
+            <div class="scroll-arrow">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+        </div>
     </section>
 
     <!-- Doa Section -->
