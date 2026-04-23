@@ -1403,26 +1403,29 @@
             wishesList.innerHTML = '<div class="loading-wishes">Memuat ucapan...</div>';
             
             try {
-                // ⭐ Ubah dari GET ke POST
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'getWishes' })
+                const response = await fetch(SCRIPT_URL + '?action=getWishes', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
                 });
+                
                 const data = await response.json();
                 
                 if (data && data.success && data.wishes && data.wishes.length > 0) {
                     wishesList.innerHTML = '';
                     // Tampilkan ucapan terbaru di atas
-                    data.wishes.slice().reverse().forEach(wish => {
-                        wishesList.innerHTML += createWishCard(wish);
+                    data.wishes.reverse().forEach(wish => { 
+                        wishesList.innerHTML += createWishCard(wish); 
                     });
                 } else {
                     wishesList.innerHTML = '<div class="no-wishes">Belum ada ucapan. Jadilah yang pertama memberikan ucapan!</div>';
                 }
             } catch (error) {
                 console.error('Error loading wishes:', error);
-                wishesList.innerHTML = '<div class="no-wishes">Gagal memuat ucapan. Silakan refresh halaman.</div>';
+                wishesList.innerHTML = '<div class="no-wishes">Memuat ucapan...</div>';
+                // Coba lagi setelah 3 detik
+                setTimeout(loadWishes, 3000);
             }
         }
 
@@ -1490,20 +1493,20 @@
             document.getElementById('modalSubtitle').textContent = 'Memuat data...';
             
             try {
-                // ⭐ Ubah dari GET ke POST
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'getRSVP' })
+                const res  = await fetch(SCRIPT_URL + '?action=getRSVP', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
                 });
-                const data = await response.json();
+                const data = await res.json();
                 
                 if (data && data.success && data.rsvp) {
                     allRsvp = data.rsvp;
                 } else {
                     allRsvp = [];
                 }
-            } catch(e) {
+            } catch (e) {
                 console.error('Error fetching RSVP:', e);
                 allRsvp = [];
             }
