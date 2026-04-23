@@ -447,6 +447,133 @@
 
         .rsvp-section { background: var(--light); }
         .rsvp-container { max-width: 600px; margin: 0 auto; background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+
+        /* Tombol lihat daftar tamu */
+        .btn-lihat-tamu {
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            width: 100%; margin-top: 1rem;
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: 2px solid var(--accent);
+            border-radius: 50px;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s;
+            letter-spacing: 0.5px;
+        }
+        .btn-lihat-tamu:hover { background: var(--accent); color: var(--dark); }
+        .btn-lihat-tamu svg { width: 18px; height: 18px; fill: currentColor; }
+
+        /* Modal overlay */
+        #rsvpModal {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6); z-index: 88888;
+            align-items: center; justify-content: center;
+            padding: 1rem;
+            backdrop-filter: blur(4px);
+        }
+        #rsvpModal.open { display: flex; }
+
+        .rsvp-modal-box {
+            background: white; border-radius: 20px;
+            width: 100%; max-width: 520px;
+            max-height: 88vh; display: flex; flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalPop 0.3s ease-out;
+            overflow: hidden;
+        }
+        @keyframes modalPop { from{opacity:0;transform:scale(0.93) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+        /* Header modal */
+        .rsvp-modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light); padding: 1.4rem 1.6rem;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-shrink: 0;
+        }
+        .rsvp-modal-header h3 {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600;
+        }
+        .rsvp-modal-header p { font-size: 0.72rem; opacity: 0.8; margin-top: 0.2rem; }
+        .rsvp-modal-close {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: rgba(255,255,255,0.15); border: none;
+            color: white; font-size: 1.1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s; flex-shrink: 0;
+        }
+        .rsvp-modal-close:hover { background: rgba(255,255,255,0.3); }
+
+        /* Tab hadir / tidak hadir */
+        .rsvp-tabs {
+            display: flex; border-bottom: 2px solid var(--light);
+            flex-shrink: 0;
+        }
+        .rsvp-tab {
+            flex: 1; padding: 0.8rem; border: none; background: white;
+            font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; color: var(--text);
+            display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+            border-bottom: 3px solid transparent; margin-bottom: -2px;
+        }
+        .rsvp-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .rsvp-tab-count {
+            background: var(--light); border-radius: 100px;
+            padding: 0.1rem 0.5rem; font-size: 0.7rem;
+        }
+        .rsvp-tab.active .rsvp-tab-count { background: var(--primary); color: white; }
+
+        /* Body daftar */
+        .rsvp-modal-body { flex: 1; overflow-y: auto; padding: 1rem 1.4rem; }
+
+        .rsvp-loading { text-align: center; padding: 2rem; color: var(--secondary); font-size: 0.9rem; }
+
+        /* Item tamu */
+        .tamu-item {
+            display: flex; align-items: center; gap: 0.8rem;
+            padding: 0.7rem 0.8rem; border-radius: 10px;
+            margin-bottom: 0.5rem;
+            background: var(--light);
+            animation: slideInItem 0.3s ease-out;
+        }
+        @keyframes slideInItem { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
+        .tamu-nomor {
+            width: 26px; height: 26px; border-radius: 50%;
+            background: var(--primary); color: white;
+            font-size: 0.72rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .tamu-nama {
+            flex: 1; font-size: 0.88rem; font-weight: 500; color: var(--text);
+        }
+        .tamu-badge {
+            font-size: 0.65rem; padding: 0.15rem 0.55rem; border-radius: 100px;
+            font-weight: 600; letter-spacing: 0.5px;
+        }
+        .tamu-badge.hadir { background: rgba(26,77,46,0.1); color: var(--primary); }
+        .tamu-badge.tidak { background: rgba(220,53,69,0.1); color: #dc3545; }
+        .tamu-kosong { text-align: center; padding: 2.5rem 1rem; color: var(--secondary); font-size: 0.88rem; font-style: italic; }
+
+        /* Pagination */
+        .rsvp-pagination {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.8rem 1.4rem; border-top: 1px solid var(--light);
+            flex-shrink: 0;
+        }
+        .page-info { font-size: 0.75rem; color: var(--secondary); }
+        .page-btns { display: flex; gap: 0.4rem; }
+        .page-btn {
+            width: 32px; height: 32px; border-radius: 8px;
+            border: 1.5px solid var(--accent); background: white;
+            color: var(--primary); font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .page-btn:hover:not(:disabled) { background: var(--accent); color: var(--dark); }
+        .page-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .page-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
+        .page-btn svg { width: 14px; height: 14px; fill: currentColor; }
         .form-group { margin-bottom: 2rem; }
         .form-group label { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--primary); margin-bottom: 0.5rem; font-weight: 600; }
         .form-group input, .form-group textarea { width: 100%; padding: 1rem; border: 2px solid var(--accent); border-radius: 10px; font-family: 'Montserrat', sans-serif; font-size: 1rem; transition: border-color 0.3s; background: var(--light); }
@@ -669,7 +796,7 @@
             <!-- Badge atas -->
             <div class="hero-badge">
                 <div class="hero-badge-dot"></div>
-                <span>---------------------</span>
+                <span>Undangan Resmi</span>
             </div>
 
             <!-- Bismillah -->
@@ -703,7 +830,7 @@
             <div class="hero-date-box">
                 <span class="hero-date-label">📅 Hari Pelaksanaan</span>
                 <span class="hero-date-text">Senin, 27 April 2026</span>
-                <span class="hero-date-hijri">09 Dzulqa'dah 1447 H • Pukul 09.00 WITA</span>
+                <span class="hero-date-hijri">29 Syawal 1447 H • Pukul 09.00 WITA</span>
             </div>
 
             <!-- Nama bayi -->
@@ -792,6 +919,7 @@
             <div class="address-info">
                 <h3>Alamat Lengkap</h3>
                 <p>
+                    Rumah Bapak Jusmani bin Ahwani<br>
                     Jalan PDSB RT. 003 RW. 002<br>
                     Kelurahan Gunung Tinggi Kecamatan Batulicin<br>
                     Kabupaten Tanah Bumbu, Kal-Sel. 72214
@@ -811,18 +939,18 @@
                 <img src="../image/denah.png" alt="Peta Area 1" onerror="this.parentElement.querySelector('.denah-placeholder').style.display='flex'; this.style.display='none';">
                 <div class="denah-placeholder" style="display:none;">
                     <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
-                    <p>Denah Alamat Rumah</p>
+                    <p>Peta Area 1</p>
                 </div>
-                <div class="denah-caption">🗺 Denah Alamat Rumah</div>
+                <div class="denah-caption">🗺 Peta Area 1</div>
             </div>
 
             <!-- Slot 2: placeholder -->
             <div class="denah-item" onclick="openLightbox('', 'Peta Area 2')">
                 <div class="denah-placeholder">
                     <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
-                    <p>Peta Jalan</p>
+                    <p>Peta Area 2</p>
                 </div>
-                <div class="denah-caption">🗺 Peta Jalan</div>
+                <div class="denah-caption">🗺 Peta Area 2</div>
             </div>
 
             <!-- Slot 3: placeholder -->
@@ -838,17 +966,48 @@
             <div class="denah-item" onclick="openLightbox('', 'Detail Rumah')">
                 <div class="denah-placeholder">
                     <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
-                    <p>Foto Rumah Acara</p>
+                    <p>Detail Rumah</p>
                 </div>
-                <div class="denah-caption">🏠 Foto Rumah Acara</div>
+                <div class="denah-caption">🏠 Detail Rumah</div>
             </div>
         </div>
     </section>
 
     <!-- RSVP Section -->
+    <!-- Modal Daftar Tamu -->
+    <div id="rsvpModal" onclick="handleModalClick(event)">
+        <div class="rsvp-modal-box">
+            <div class="rsvp-modal-header">
+                <div>
+                    <h3>📋 Daftar Tamu</h3>
+                    <p id="modalSubtitle">Memuat data...</p>
+                </div>
+                <button class="rsvp-modal-close" onclick="closeRsvpModal()">✕</button>
+            </div>
+
+            <div class="rsvp-tabs">
+                <button class="rsvp-tab active" id="tabHadir" onclick="switchTab('Hadir')">
+                    ✅ Hadir <span class="rsvp-tab-count" id="countHadir">0</span>
+                </button>
+                <button class="rsvp-tab" id="tabTidak" onclick="switchTab('Tidak Hadir')">
+                    ❌ Tidak Hadir <span class="rsvp-tab-count" id="countTidak">0</span>
+                </button>
+            </div>
+
+            <div class="rsvp-modal-body" id="tamuList">
+                <div class="rsvp-loading">Memuat daftar tamu...</div>
+            </div>
+
+            <div class="rsvp-pagination">
+                <span class="page-info" id="pageInfo">-</span>
+                <div class="page-btns" id="pageBtns"></div>
+            </div>
+        </div>
+    </div>
+
     <section class="rsvp-section reveal">
         <h2 class="section-title">Konfirmasi Kehadiran</h2>
-        <p class="section-subtitle">Mohon konfirmasi kehadiran Anda (Opsional)</p>
+        <p class="section-subtitle">Mohon konfirmasi kehadiran Anda</p>
         <div class="rsvp-container">
             <div id="rsvpAlert" class="alert"></div>
             <form id="rsvpForm">
@@ -871,6 +1030,11 @@
                 </div>
                 <button type="submit" class="submit-btn" id="rsvpSubmitBtn">Kirim Konfirmasi</button>
             </form>
+            <!-- Tombol lihat daftar -->
+            <button class="btn-lihat-tamu" onclick="openRsvpModal()">
+                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                Lihat Daftar Tamu
+            </button>
         </div>
     </section>
 
@@ -1052,9 +1216,7 @@
         }
 
         // Tutup lightbox dengan tombol ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeLightbox();
-        });
+        
 
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -1078,6 +1240,10 @@
                 await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'submitRSVP', nama, kehadiran }) });
                 showAlert(alertEl, 'Terima kasih! Konfirmasi kehadiran Anda telah diterima.', 'success');
                 document.getElementById('rsvpForm').reset();
+                // Refresh data modal jika sedang terbuka
+                if (document.getElementById('rsvpModal').classList.contains('open')) {
+                    setTimeout(fetchRsvpData, 800);
+                }
             } catch (error) {
                 showAlert(alertEl, 'Terjadi kesalahan. Silakan coba lagi.', 'error');
             } finally {
@@ -1134,6 +1300,138 @@
             const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
             return text.replace(/[&<>"']/g, m => map[m]);
         }
+
+        /* ============================================================
+           MODAL DAFTAR TAMU — dengan tab & pagination 7 per halaman
+        ============================================================ */
+        const PER_PAGE = 7;
+        let allRsvp      = [];   // semua data dari server
+        let activeTab    = 'Hadir';
+        let currentPage  = 1;
+
+        async function openRsvpModal() {
+            document.getElementById('rsvpModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            // Ambil data setiap kali dibuka agar selalu fresh
+            await fetchRsvpData();
+        }
+
+        function closeRsvpModal() {
+            document.getElementById('rsvpModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function handleModalClick(e) {
+            // Tutup jika klik di luar kotak
+            if (e.target === document.getElementById('rsvpModal')) closeRsvpModal();
+        }
+
+        async function fetchRsvpData() {
+            document.getElementById('tamuList').innerHTML = '<div class="rsvp-loading">⏳ Memuat daftar tamu...</div>';
+            document.getElementById('modalSubtitle').textContent = 'Memuat data...';
+            try {
+                const res  = await fetch(SCRIPT_URL + '?action=getRSVP');
+                const data = await res.json();
+                if (data.success) {
+                    allRsvp = data.rsvp || [];
+                } else {
+                    allRsvp = [];
+                }
+            } catch (e) {
+                // Jika endpoint belum ada / error, pakai contoh kosong
+                allRsvp = [];
+            }
+            updateModalCounts();
+            renderTamuList();
+        }
+
+        function updateModalCounts() {
+            const jmlHadir = allRsvp.filter(r => r.kehadiran === 'Hadir').length;
+            const jmlTidak = allRsvp.filter(r => r.kehadiran === 'Tidak Hadir').length;
+            document.getElementById('countHadir').textContent = jmlHadir;
+            document.getElementById('countTidak').textContent = jmlTidak;
+            document.getElementById('modalSubtitle').textContent =
+                `${jmlHadir} hadir · ${jmlTidak} tidak hadir · ${allRsvp.length} total`;
+        }
+
+        function switchTab(tab) {
+            activeTab   = tab;
+            currentPage = 1;
+            document.getElementById('tabHadir').classList.toggle('active', tab === 'Hadir');
+            document.getElementById('tabTidak').classList.toggle('active', tab === 'Tidak Hadir');
+            renderTamuList();
+        }
+
+        function renderTamuList() {
+            const filtered = allRsvp.filter(r => r.kehadiran === activeTab);
+            const total    = filtered.length;
+            const totalPg  = Math.max(1, Math.ceil(total / PER_PAGE));
+
+            if (currentPage > totalPg) currentPage = totalPg;
+
+            const start = (currentPage - 1) * PER_PAGE;
+            const slice = filtered.slice(start, start + PER_PAGE);
+
+            // Render list
+            const listEl = document.getElementById('tamuList');
+            if (total === 0) {
+                listEl.innerHTML = `<div class="tamu-kosong">
+                    ${activeTab === 'Hadir' ? '😊 Belum ada tamu yang konfirmasi hadir.' : '📭 Belum ada tamu yang menyatakan tidak hadir.'}
+                </div>`;
+            } else {
+                listEl.innerHTML = slice.map((r, i) => {
+                    const no     = start + i + 1;
+                    const isHdr  = r.kehadiran === 'Hadir';
+                    return `<div class="tamu-item">
+                        <div class="tamu-nomor">${no}</div>
+                        <div class="tamu-nama">${escapeHtml(r.nama)}</div>
+                        <span class="tamu-badge ${isHdr ? 'hadir' : 'tidak'}">${isHdr ? 'Hadir' : 'Tidak'}</span>
+                    </div>`;
+                }).join('');
+            }
+
+            // Page info
+            document.getElementById('pageInfo').textContent = total === 0
+                ? 'Tidak ada data'
+                : `${start + 1}–${Math.min(start + PER_PAGE, total)} dari ${total}`;
+
+            // Pagination buttons
+            const btnsEl = document.getElementById('pageBtns');
+            if (totalPg <= 1) { btnsEl.innerHTML = ''; return; }
+
+            let html = `<button class="page-btn" onclick="changePage(${currentPage-1})" ${currentPage===1?'disabled':''}>
+                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+            </button>`;
+
+            // Tampilkan max 5 halaman di sekitar halaman aktif
+            let pStart = Math.max(1, currentPage - 2);
+            let pEnd   = Math.min(totalPg, pStart + 4);
+            if (pEnd - pStart < 4) pStart = Math.max(1, pEnd - 4);
+
+            for (let p = pStart; p <= pEnd; p++) {
+                html += `<button class="page-btn ${p===currentPage?'active':''}" onclick="changePage(${p})">${p}</button>`;
+            }
+
+            html += `<button class="page-btn" onclick="changePage(${currentPage+1})" ${currentPage===totalPg?'disabled':''}>
+                <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+            </button>`;
+            btnsEl.innerHTML = html;
+        }
+
+        function changePage(p) {
+            currentPage = p;
+            renderTamuList();
+            // Scroll body modal ke atas
+            document.getElementById('tamuList').scrollTop = 0;
+        }
+
+        // Tutup modal dengan ESC (tambah ke listener yang sudah ada)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeRsvpModal();
+            }
+        });
 
         function showAlert(alertElement, message, type) {
             alertElement.className = 'alert alert-' + type + ' show';
