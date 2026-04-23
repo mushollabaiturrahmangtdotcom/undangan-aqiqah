@@ -390,6 +390,76 @@
         html { scroll-behavior: smooth; }
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+
+        /* ===== DESKTOP STYLES (Lebar ≥ 1024px) ===== */
+@media (min-width: 1024px) {
+    /* Perbesar ukuran font dasar */
+    html {
+        font-size: 18px; /* default 16px → 18px */
+    }
+    
+    /* Perbesar max-width container agar tidak terlalu sempit */
+    section {
+        max-width: 1400px;
+        padding: 6rem 3rem;
+    }
+    
+    /* Perbesar ukuran hero title */
+    .hero-title {
+        font-size: 5rem;
+    }
+    
+    /* Perbesar section title */
+    .section-title {
+        font-size: 3.5rem;
+    }
+    
+    /* Perbesar baby name */
+    .baby-name {
+        font-size: 4rem;
+    }
+    
+    /* Perbesar cover message (opsional) */
+    .cover-message .isi,
+    .cover-message .penutup {
+        font-size: 0.85rem; /* dari 0.28rem di mobile */
+        line-height: 1.6;
+    }
+    
+    .cover-message .nama-bayi-msg {
+        font-size: 1.2rem;
+    }
+    
+    /* Perbesar tombol open */
+    .open-button {
+        padding: 1.2rem 4rem;
+        font-size: 1.3rem;
+    }
+    
+    /* Perbesar countdown value */
+    .countdown-value {
+        width: 110px;
+        height: 110px;
+        font-size: 4rem;
+    }
+    
+    /* Perbesar event card */
+    .event-card {
+        max-width: 700px;
+        padding: 3rem;
+    }
+    
+    /* Perbesar form dan message container */
+    .form-container, .messages-container {
+        max-width: 800px;
+    }
+    
+    /* Perbesar denah grid (lebih banyak kolom) */
+    .denah-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
     </style>
 </head>
 <body>
