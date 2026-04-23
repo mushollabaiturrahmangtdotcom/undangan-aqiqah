@@ -36,12 +36,23 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             display: flex; align-items: center; justify-content: center;
             z-index: 10000; transition: opacity 1s, visibility 1s;
-            overflow: hidden; /* tidak perlu scroll */
+            overflow: hidden;
         }
         #coverPage.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
         .cover-ornament-top { position: absolute; top: 0; left: 0; right: 0; height: 120px; background: radial-gradient(ellipse at top, rgba(201,169,97,0.2) 0%, transparent 70%); pointer-events: none; }
         .cover-ornament-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: radial-gradient(ellipse at bottom, rgba(201,169,97,0.2) 0%, transparent 70%); pointer-events: none; }
+
+        /* Ornamen sudut desktop */
+        .cover-corner {
+            position: absolute; width: 100px; height: 100px;
+            pointer-events: none; opacity: 0.3;
+        }
+        .cover-corner-tl { top: 20px; left: 20px; }
+        .cover-corner-tr { top: 20px; right: 20px; transform: scaleX(-1); }
+        .cover-corner-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
+        .cover-corner-br { bottom: 20px; right: 20px; transform: scale(-1); }
+        .cover-corner svg { width: 100%; height: 100%; }
 
         .cover-content {
             text-align: center; color: var(--light);
@@ -52,7 +63,7 @@
             gap: 0.6rem;
         }
 
-        /* --- Bismillah & salam ringkas --- */
+        /* --- Bismillah & salam --- */
         .cover-bismillah { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; letter-spacing: 2px; animation: fadeInDown 1s ease-out; line-height: 1.2; }
         .cover-salam { font-size: 0.72rem; font-style: italic; opacity: 0.85; animation: fadeInDown 1s ease-out 0.15s backwards; }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
@@ -64,32 +75,23 @@
         .cover-divider::after { right: -24px; }
         .cover-baby-name { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--accent); animation: fadeInUp 1s ease-out 0.7s backwards; letter-spacing: 1px; }
 
-        /* --- Pesan Yth. — dipadatkan jadi 1 baris pill kecil --- */
+        /* --- Pesan Yth. pill --- */
         .cover-message {
             background: rgba(255,255,255,0.09);
             border: 1px solid rgba(201,169,97,0.4);
-            border-radius: 30px;               /* pill shape */
+            border-radius: 30px;
             padding: 0.5rem 1.2rem;
             animation: fadeInUp 1s ease-out 0.9s backwards;
             width: 100%;
         }
-        /* Baris ringkas: "Yth. Bapak/Ibu/Saudara/i — dengan hormat kami mengundang Anda" */
         .cover-message .yth-compact {
             font-size: 0.72rem;
             color: rgba(248,246,241,0.88);
-            font-weight: 300;
-            line-height: 1.6;
-            text-align: center;
+            font-weight: 300; line-height: 1.6; text-align: center;
         }
-        .cover-message .yth-compact strong {
-            color: var(--accent);
-            font-weight: 600;
-        }
-        /* Sembunyikan bagian panjang (isi, penutup, wassalam) di tampilan cover */
-        .cover-message .isi,
-        .cover-message .nama-bayi-msg,
-        .cover-message .penutup,
-        .cover-message .wassalam,
+        .cover-message .yth-compact strong { color: var(--accent); font-weight: 600; }
+        .cover-message .isi, .cover-message .nama-bayi-msg,
+        .cover-message .penutup, .cover-message .wassalam,
         .cover-message .yth { display: none; }
 
         /* COUNTDOWN */
@@ -106,6 +108,40 @@
 
         .cover-footer { font-size: 0.75rem; opacity: 0.8; animation: fadeInUp 1s ease-out 1.3s backwards; }
         .cover-footer strong { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; display: block; margin-top: 0.2rem; }
+
+        /* ===== DESKTOP SCALE-UP ===== */
+        @media (min-width: 769px) {
+            .cover-content {
+                max-width: 680px;
+                gap: 1rem;
+                padding: 2rem 3rem;
+            }
+            .cover-bismillah   { font-size: 2.6rem; }
+            .cover-salam       { font-size: 1rem; }
+            .cover-title       { font-size: 2.8rem; }
+            .cover-divider     { width: 160px; }
+            .cover-divider::before { left: -30px; }
+            .cover-divider::after  { right: -30px; }
+            .cover-baby-name   { font-size: 2.3rem; letter-spacing: 2px; }
+            .cover-message     { padding: 0.7rem 2rem; border-radius: 40px; }
+            .cover-message .yth-compact { font-size: 0.95rem; }
+            .countdown-label   { font-size: 0.8rem; margin-bottom: 0.8rem; }
+            .countdown-value   { font-size: 2.4rem; width: 76px; height: 76px; border-radius: 12px; border-width: 2px; }
+            .countdown-timer   { gap: 1rem; }
+            .countdown-label-text { font-size: 0.75rem; }
+            .open-button       { padding: 1rem 3.5rem; font-size: 1.05rem; letter-spacing: 3px; }
+            .cover-footer      { font-size: 0.9rem; }
+            .cover-footer strong { font-size: 1.2rem; }
+        }
+
+        @media (min-width: 1200px) {
+            .cover-content     { max-width: 760px; gap: 1.1rem; }
+            .cover-bismillah   { font-size: 3rem; }
+            .cover-title       { font-size: 3.2rem; }
+            .cover-baby-name   { font-size: 2.6rem; }
+            .countdown-value   { font-size: 2.8rem; width: 88px; height: 88px; }
+            .countdown-timer   { gap: 1.2rem; }
+        }
 
         /* LOADING */
         #loading { position: fixed; inset: 0; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.8s, visibility 0.8s; }
@@ -685,6 +721,41 @@
     <div id="coverPage">
         <div class="cover-ornament-top"></div>
         <div class="cover-ornament-bottom"></div>
+
+        <!-- Ornamen sudut (tampil di desktop) -->
+        <div class="cover-corner cover-corner-tl">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2 L2 55 M2 2 L55 2" stroke="#c9a961" stroke-width="1.5"/>
+                <path d="M10 2 L10 45 M2 10 L45 10" stroke="#c9a961" stroke-width="0.6" opacity="0.5"/>
+                <path d="M18 2 L18 28 M2 18 L28 18" stroke="#c9a961" stroke-width="0.4" opacity="0.3"/>
+                <circle cx="2" cy="2" r="2.5" fill="#c9a961"/>
+            </svg>
+        </div>
+        <div class="cover-corner cover-corner-tr">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2 L2 55 M2 2 L55 2" stroke="#c9a961" stroke-width="1.5"/>
+                <path d="M10 2 L10 45 M2 10 L45 10" stroke="#c9a961" stroke-width="0.6" opacity="0.5"/>
+                <path d="M18 2 L18 28 M2 18 L28 18" stroke="#c9a961" stroke-width="0.4" opacity="0.3"/>
+                <circle cx="2" cy="2" r="2.5" fill="#c9a961"/>
+            </svg>
+        </div>
+        <div class="cover-corner cover-corner-bl">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2 L2 55 M2 2 L55 2" stroke="#c9a961" stroke-width="1.5"/>
+                <path d="M10 2 L10 45 M2 10 L45 10" stroke="#c9a961" stroke-width="0.6" opacity="0.5"/>
+                <path d="M18 2 L18 28 M2 18 L28 18" stroke="#c9a961" stroke-width="0.4" opacity="0.3"/>
+                <circle cx="2" cy="2" r="2.5" fill="#c9a961"/>
+            </svg>
+        </div>
+        <div class="cover-corner cover-corner-br">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2 L2 55 M2 2 L55 2" stroke="#c9a961" stroke-width="1.5"/>
+                <path d="M10 2 L10 45 M2 10 L45 10" stroke="#c9a961" stroke-width="0.6" opacity="0.5"/>
+                <path d="M18 2 L18 28 M2 18 L28 18" stroke="#c9a961" stroke-width="0.4" opacity="0.3"/>
+                <circle cx="2" cy="2" r="2.5" fill="#c9a961"/>
+            </svg>
+        </div>
+
         <div class="cover-content">
 
                 <div class="cover-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
@@ -1092,7 +1163,7 @@
     <footer class="footer">
         <div class="footer-content">
             <h2>Merupakan suatu kehormatan bagi kami</h2>
-            <p>Atas kehadiran dan doa restu dari Bapak/Ibu/Saudara/i sekalian, kami ucapkan terima kasih.</p>
+            <p>Atas kehadiran, doa dan harapan yang baik dari Bapak/Ibu/Saudara/i sekalian, kami ucapkan terima kasih.</p>
             <div class="divider"></div>
             <div class="parents-names"><i>Wassalamu'alaikum Warahmatullahi Wabarakatuh</i></div>
             <div class="parents-names"><b>Hormat Kami,</b><br><strong>Rahmatullah S & Nur Saidah</strong></div>
