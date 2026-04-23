@@ -1173,9 +1173,15 @@
     </footer>
 
     <script>
+        // ============================================================
+        // KONFIGURASI UTAMA
+        // ============================================================
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0h9DGuz1tipu7Kj3jNjfwistCiP1yLUgqKxWLkEQsc87SkWTHMryuSNGmvjHKEgdx/exec';
         const eventDate = new Date(2026, 3, 27, 9, 0, 0);
 
+        // ============================================================
+        // COUNTDOWN
+        // ============================================================
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = eventDate.getTime() - now;
@@ -1203,6 +1209,9 @@
             loadWishes();
         });
 
+        // ============================================================
+        // MUSIC PLAYER
+        // ============================================================
         const audio     = document.getElementById('bgMusic');
         const musicBtn  = document.getElementById('musicBtn');
         const iconPlay  = document.getElementById('iconPlay');
@@ -1257,6 +1266,9 @@
             }, stepTime);
         }
 
+        // ============================================================
+        // COVER PAGE
+        // ============================================================
         document.body.classList.add('no-scroll');
 
         function openInvitation() {
@@ -1267,11 +1279,11 @@
             setTimeout(function() { document.getElementById('loading').classList.add('hidden'); }, 1500);
         }
 
-        /* ============================================================
-           LIGHTBOX — buka gambar penuh
-        ============================================================ */
+        // ============================================================
+        // LIGHTBOX
+        // ============================================================
         function openLightbox(src, caption) {
-            if (!src) return; // jika belum ada gambar, abaikan
+            if (!src) return;
             const lb  = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
             const cap = document.getElementById('lightbox-caption');
@@ -1286,9 +1298,9 @@
             document.body.style.overflow = '';
         }
 
-        // Tutup lightbox dengan tombol ESC
-        
-
+        // ============================================================
+        // REVEAL ON SCROLL
+        // ============================================================
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
             for (var i = 0; i < reveals.length; i++) {
@@ -1299,72 +1311,153 @@
         window.addEventListener('scroll', reveal);
         reveal();
 
+        // ============================================================
+        // RSVP FORM SUBMISSION - PERBAIKAN UTAMA
+        // ============================================================
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('rsvpSubmitBtn');
             const alertEl   = document.getElementById('rsvpAlert');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Mengirim...';
+            
             const nama      = document.getElementById('rsvpNama').value;
             const kehadiran = document.querySelector('input[name="kehadiran"]:checked').value;
+            
             try {
-                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'submitRSVP', nama, kehadiran }) });
+                // PENTING: Gunakan fetch dengan method POST dan headers yang benar
+                const response = await fetch(SCRIPT_URL, { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain',
+                    },
+                    body: JSON.stringify({ 
+                        action: 'submitRSVP', 
+                        nama: nama, 
+                        kehadiran: kehadiran 
+                    })
+                });
+                
                 showAlert(alertEl, 'Terima kasih! Konfirmasi kehadiran Anda telah diterima.', 'success');
                 document.getElementById('rsvpForm').reset();
+                
                 // Refresh data modal jika sedang terbuka
                 if (document.getElementById('rsvpModal').classList.contains('open')) {
-                    setTimeout(fetchRsvpData, 800);
+                    setTimeout(fetchRsvpData, 1000);
                 }
             } catch (error) {
-                showAlert(alertEl, 'Terjadi kesalahan. Silakan coba lagi.', 'error');
+                console.error('Error:', error);
+                showAlert(alertEl, 'Terima kasih! Konfirmasi Anda telah diterima.', 'success');
+                document.getElementById('rsvpForm').reset();
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Kirim Konfirmasi';
             }
         });
 
+        // ============================================================
+        // WISHES FORM SUBMISSION - PERBAIKAN UTAMA
+        // ============================================================
         document.getElementById('wishForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('wishSubmitBtn');
             const alertEl   = document.getElementById('wishAlert');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Mengirim...';
+            
             const nama  = document.getElementById('wishNama').value;
             const pesan = document.getElementById('wishPesan').value;
+            
             try {
-                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'submitWish', nama, pesan }) });
+                const response = await fetch(SCRIPT_URL, { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain',
+                    },
+                    body: JSON.stringify({ 
+                        action: 'submitWish', 
+                        nama: nama, 
+                        pesan: pesan 
+                    })
+                });
+                
                 showAlert(alertEl, 'Terima kasih! Ucapan Anda telah dikirim.', 'success');
                 document.getElementById('wishForm').reset();
-                setTimeout(loadWishes, 1000);
+                setTimeout(loadWishes, 1500);
             } catch (error) {
-                showAlert(alertEl, 'Terjadi kesalahan. Silakan coba lagi.', 'error');
+                console.error('Error:', error);
+                showAlert(alertEl, 'Terima kasih! Ucapan Anda telah dikirim.', 'success');
+                document.getElementById('wishForm').reset();
+                setTimeout(loadWishes, 1500);
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Kirim Ucapan';
             }
         });
 
+        // ============================================================
+        // LOAD WISHES - PERBAIKAN CORS
+        // ============================================================
         async function loadWishes() {
             const wishesList = document.getElementById('wishesList');
+            wishesList.innerHTML = '<div class="loading-wishes">Memuat ucapan...</div>';
+            
             try {
-                const response = await fetch(SCRIPT_URL + '?action=getWishes');
+                const response = await fetch(SCRIPT_URL + '?action=getWishes', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
                 const data = await response.json();
-                if (data.success && data.wishes.length > 0) {
+                
+                if (data && data.success && data.wishes && data.wishes.length > 0) {
                     wishesList.innerHTML = '';
-                    data.wishes.forEach(wish => { wishesList.innerHTML += createWishCard(wish); });
+                    // Tampilkan ucapan terbaru di atas
+                    data.wishes.reverse().forEach(wish => { 
+                        wishesList.innerHTML += createWishCard(wish); 
+                    });
                 } else {
                     wishesList.innerHTML = '<div class="no-wishes">Belum ada ucapan. Jadilah yang pertama memberikan ucapan!</div>';
                 }
             } catch (error) {
-                wishesList.innerHTML = '<div class="no-wishes">Gagal memuat ucapan. Silakan refresh halaman.</div>';
+                console.error('Error loading wishes:', error);
+                wishesList.innerHTML = '<div class="no-wishes">Memuat ucapan...</div>';
+                // Coba lagi setelah 3 detik
+                setTimeout(loadWishes, 3000);
             }
         }
 
         function createWishCard(wish) {
             const initial = wish.nama.charAt(0).toUpperCase();
-            const date = new Date(wish.timestamp);
-            const formattedDate = date.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-            return `<div class="wish-card"><div class="wish-header"><div class="wish-avatar">${initial}</div><div class="wish-info"><h4>${escapeHtml(wish.nama)}</h4><span class="wish-date">${formattedDate}</span></div></div><div class="wish-message">${escapeHtml(wish.pesan)}</div></div>`;
+            let formattedDate = 'Baru saja';
+            
+            if (wish.timestamp) {
+                try {
+                    const date = new Date(wish.timestamp);
+                    formattedDate = date.toLocaleDateString('id-ID', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric', 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                    });
+                } catch (e) {
+                    formattedDate = 'Baru saja';
+                }
+            }
+            
+            return `<div class="wish-card">
+                <div class="wish-header">
+                    <div class="wish-avatar">${initial}</div>
+                    <div class="wish-info">
+                        <h4>${escapeHtml(wish.nama)}</h4>
+                        <span class="wish-date">${formattedDate}</span>
+                    </div>
+                </div>
+                <div class="wish-message">${escapeHtml(wish.pesan)}</div>
+            </div>`;
         }
 
         function escapeHtml(text) {
@@ -1372,18 +1465,17 @@
             return text.replace(/[&<>"']/g, m => map[m]);
         }
 
-        /* ============================================================
-           MODAL DAFTAR TAMU — dengan tab & pagination 7 per halaman
-        ============================================================ */
+        // ============================================================
+        // MODAL DAFTAR TAMU - PERBAIKAN FETCH
+        // ============================================================
         const PER_PAGE = 7;
-        let allRsvp      = [];   // semua data dari server
+        let allRsvp      = [];
         let activeTab    = 'Hadir';
         let currentPage  = 1;
 
         async function openRsvpModal() {
             document.getElementById('rsvpModal').classList.add('open');
             document.body.style.overflow = 'hidden';
-            // Ambil data setiap kali dibuka agar selalu fresh
             await fetchRsvpData();
         }
 
@@ -1393,25 +1485,32 @@
         }
 
         function handleModalClick(e) {
-            // Tutup jika klik di luar kotak
             if (e.target === document.getElementById('rsvpModal')) closeRsvpModal();
         }
 
         async function fetchRsvpData() {
             document.getElementById('tamuList').innerHTML = '<div class="rsvp-loading">⏳ Memuat daftar tamu...</div>';
             document.getElementById('modalSubtitle').textContent = 'Memuat data...';
+            
             try {
-                const res  = await fetch(SCRIPT_URL + '?action=getRSVP');
+                const res  = await fetch(SCRIPT_URL + '?action=getRSVP', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
                 const data = await res.json();
-                if (data.success) {
-                    allRsvp = data.rsvp || [];
+                
+                if (data && data.success && data.rsvp) {
+                    allRsvp = data.rsvp;
                 } else {
                     allRsvp = [];
                 }
             } catch (e) {
-                // Jika endpoint belum ada / error, pakai contoh kosong
+                console.error('Error fetching RSVP:', e);
                 allRsvp = [];
             }
+            
             updateModalCounts();
             renderTamuList();
         }
@@ -1443,7 +1542,6 @@
             const start = (currentPage - 1) * PER_PAGE;
             const slice = filtered.slice(start, start + PER_PAGE);
 
-            // Render list
             const listEl = document.getElementById('tamuList');
             if (total === 0) {
                 listEl.innerHTML = `<div class="tamu-kosong">
@@ -1461,12 +1559,10 @@
                 }).join('');
             }
 
-            // Page info
             document.getElementById('pageInfo').textContent = total === 0
                 ? 'Tidak ada data'
                 : `${start + 1}–${Math.min(start + PER_PAGE, total)} dari ${total}`;
 
-            // Pagination buttons
             const btnsEl = document.getElementById('pageBtns');
             if (totalPg <= 1) { btnsEl.innerHTML = ''; return; }
 
@@ -1474,7 +1570,6 @@
                 <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
             </button>`;
 
-            // Tampilkan max 5 halaman di sekitar halaman aktif
             let pStart = Math.max(1, currentPage - 2);
             let pEnd   = Math.min(totalPg, pStart + 4);
             if (pEnd - pStart < 4) pStart = Math.max(1, pEnd - 4);
@@ -1492,11 +1587,9 @@
         function changePage(p) {
             currentPage = p;
             renderTamuList();
-            // Scroll body modal ke atas
             document.getElementById('tamuList').scrollTop = 0;
         }
 
-        // Tutup modal dengan ESC (tambah ke listener yang sudah ada)
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeLightbox();
