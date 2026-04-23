@@ -26,102 +26,115 @@
         .music-btn.playing::before { opacity: 1; animation: spin-ring 4s linear infinite; }
         @keyframes spin-ring { to { transform: rotate(360deg); } }
 
-        /* COVER */
+        /* ============================================================
+           COVER PAGE — PERBAIKAN MOBILE
+           Gunakan overflow-y: auto + scroll agar seluruh konten bisa
+           dijangkau pada layar kecil. Bismillah & nama bayi kini selalu
+           tampil di bagian atas sebelum pesan undangan.
+        ============================================================ */
         #coverPage {
             position: fixed; inset: 0;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            display: flex; align-items: center; justify-content: center;
+            display: flex; align-items: flex-start; justify-content: center;
             z-index: 10000; transition: opacity 1s, visibility 1s;
-            overflow-y: auto; padding: 2rem 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
-        #coverPage.hidden { opacity: 0; visibility: hidden; }
-        .cover-ornament-top { position: absolute; top: 0; left: 0; right: 0; height: 150px; background: radial-gradient(ellipse at top, rgba(201,169,97,0.2) 0%, transparent 70%); pointer-events: none; }
-        .cover-ornament-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: radial-gradient(ellipse at bottom, rgba(201,169,97,0.2) 0%, transparent 70%); pointer-events: none; }
+        #coverPage.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        .cover-ornament-top { position: fixed; top: 0; left: 0; right: 0; height: 120px; background: radial-gradient(ellipse at top, rgba(201,169,97,0.2) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+        .cover-ornament-bottom { position: fixed; bottom: 0; left: 0; right: 0; height: 120px; background: radial-gradient(ellipse at bottom, rgba(201,169,97,0.2) 0%, transparent 70%); pointer-events: none; z-index: 0; }
 
         .cover-content {
             text-align: center; color: var(--light);
-            z-index: 1; padding: 2.5rem 2rem;
+            position: relative; z-index: 1;
+            padding: 2.5rem 1.5rem 3rem;
             max-width: 600px; width: 100%;
         }
-        .cover-bismillah { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; margin-bottom: 0.5rem; letter-spacing: 2px; animation: fadeInDown 1s ease-out; }
-        .cover-salam { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; margin-bottom: 1.5rem; animation: fadeInDown 1s ease-out 0.2s backwards; }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        .cover-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 700; margin-bottom: 0.5rem; animation: fadeInUp 1s ease-out 0.4s backwards; }
-        .cover-divider { width: 150px; height: 1px; background: var(--accent); margin: 1rem auto; position: relative; animation: expandWidth 1s ease-out 0.6s backwards; }
-        .cover-divider::before, .cover-divider::after { content: '◆'; position: absolute; color: var(--accent); font-size: 0.8rem; top: 50%; transform: translateY(-50%); }
-        .cover-divider::before { left: -30px; }
-        .cover-divider::after { right: -30px; }
-        .cover-baby-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; margin: 0.8rem 0 1.5rem; color: var(--accent); animation: fadeInUp 1s ease-out 0.8s backwards; }
 
-         /* ====== PESAN UNDANGAN ====== */
+        /* --- Bagian atas: bismillah, salam, judul, nama bayi --- */
+        .cover-header-block {
+            margin-bottom: 1.4rem;
+        }
+        .cover-bismillah { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; margin-bottom: 0.4rem; letter-spacing: 2px; animation: fadeInDown 1s ease-out; }
+        .cover-salam { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; margin-bottom: 1.2rem; opacity: 0.9; animation: fadeInDown 1s ease-out 0.2s backwards; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .cover-title { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; margin-bottom: 0.4rem; animation: fadeInUp 1s ease-out 0.4s backwards; }
+        .cover-divider { width: 130px; height: 1px; background: var(--accent); margin: 0.8rem auto; position: relative; animation: expandWidth 1s ease-out 0.6s backwards; }
+        .cover-divider::before, .cover-divider::after { content: '◆'; position: absolute; color: var(--accent); font-size: 0.75rem; top: 50%; transform: translateY(-50%); }
+        .cover-divider::before { left: -28px; }
+        .cover-divider::after { right: -28px; }
+        .cover-baby-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; margin: 0.6rem 0 0; color: var(--accent); animation: fadeInUp 1s ease-out 0.8s backwards; }
+
+        /* --- Pesan undangan (collapsible di mobile) --- */
         .cover-message {
             background: rgba(255,255,255,0.08);
             backdrop-filter: blur(10px);
-            border: 0.5px solid rgba(201,169,97,0.45);
-            border-radius: 5px;
-            padding: 1rem 0.500rem;
-            margin: 0 0 1.2rem;
+            border: 1px solid rgba(201,169,97,0.45);
+            border-radius: 14px;
+            padding: 1.4rem 1.6rem;
+            margin: 0 0 1.4rem;
             animation: fadeInUp 1s ease-out 1s backwards;
         }
         .cover-message .yth {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.500rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             text-align: center;
             letter-spacing: 0.5px;
         }
         .cover-message .isi {
-            font-size: 0.350rem;
+            font-size: 0.82rem;
             color: rgba(248,246,241,0.92);
             font-weight: 300;
-            line-height: 2;
+            line-height: 1.85;
             margin-bottom: 0.5rem;
             text-align: justify;
         }
         .cover-message .nama-bayi-msg {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--accent);
             text-align: center;
             display: block;
-            margin: 0.6rem 0 0.8rem;
+            margin: 0.5rem 0 0.7rem;
             letter-spacing: 1px;
         }
         .cover-message .penutup {
-            font-size: 0.350rem;
+            font-size: 0.82rem;
             color: rgba(248,246,241,0.92);
             font-weight: 300;
-            line-height: 2;
+            line-height: 1.85;
             text-align: justify;
         }
         .cover-message .wassalam {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.75rem;
+            font-size: 0.88rem;
             font-style: italic;
             color: rgba(248,246,241,0.8);
             text-align: center;
-            margin-top: 1rem;
-            padding-top: 0.8rem;
+            margin-top: 0.8rem;
+            padding-top: 0.7rem;
             border-top: 1px solid rgba(201,169,97,0.3);
         }
 
         /* COUNTDOWN */
-        .countdown-container { margin: 0 0 1.5rem; animation: fadeInUp 1s ease-out 1.1s backwards; }
-        .countdown-label { font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 1rem; opacity: 0.9; }
-        .countdown-timer { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .countdown-container { margin: 0 0 1.4rem; animation: fadeInUp 1s ease-out 1.1s backwards; }
+        .countdown-label { font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 0.8rem; opacity: 0.9; }
+        .countdown-timer { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
         .countdown-item { display: flex; flex-direction: column; align-items: center; }
-        .countdown-value { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 2px solid var(--accent); border-radius: 10px; width: 68px; height: 68px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.4rem; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
-        .countdown-label-text { font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; }
+        .countdown-value { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; font-weight: 700; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 2px solid var(--accent); border-radius: 10px; width: 62px; height: 62px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.3rem; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .countdown-label-text { font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; }
 
-        .open-button { background: var(--accent); color: var(--dark); border: none; padding: 1rem 3rem; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; border-radius: 50px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 30px rgba(201,169,97,0.4); animation: fadeInUp 1s ease-out 1.2s backwards, pulse 2s infinite 2.2s; }
+        .open-button { background: var(--accent); color: var(--dark); border: none; padding: 0.9rem 2.5rem; font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; border-radius: 50px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 30px rgba(201,169,97,0.4); animation: fadeInUp 1s ease-out 1.2s backwards, pulse 2s infinite 2.2s; }
         .open-button:hover { background: var(--light); transform: translateY(-3px); }
         @keyframes pulse { 0%, 100% { box-shadow: 0 10px 30px rgba(201,169,97,0.4); } 50% { box-shadow: 0 10px 40px rgba(201,169,97,0.65); } }
 
-        .cover-footer { margin-top: 1.8rem; font-size: 0.9rem; opacity: 0.85; animation: fadeInUp 1s ease-out 1.4s backwards; }
-        .cover-footer strong { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; display: block; margin-top: 0.4rem; }
+        .cover-footer { margin-top: 1.5rem; font-size: 0.88rem; opacity: 0.85; animation: fadeInUp 1s ease-out 1.4s backwards; }
+        .cover-footer strong { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; display: block; margin-top: 0.3rem; }
 
         /* LOADING */
         #loading { position: fixed; inset: 0; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.8s, visibility 0.8s; }
@@ -193,12 +206,83 @@
         .address-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 1rem; }
         .address-info p { font-size: 1.1rem; line-height: 1.8; color: var(--text); }
 
+        /* ============================================================
+           DENAH SECTION — PERBAIKAN
+           - Gambar tampil penuh (object-fit: contain bukan cover)
+           - Klik gambar buka lightbox modal
+        ============================================================ */
         .denah-section { background: white; }
-        .denah-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-        .denah-item { position: relative; padding-bottom: 75%; overflow: hidden; border-radius: 15px; border: 2px solid var(--accent); cursor: pointer; transition: transform 0.3s; }
-        .denah-item:hover { transform: scale(1.05); }
-        .denah-placeholder { position: absolute; inset: 0; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--light); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; padding: 1rem; }
-        .denah-placeholder svg { width: 50px; height: 50px; fill: var(--light); margin-bottom: 1rem; }
+        .denah-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+
+        .denah-item {
+            border-radius: 15px;
+            border: 2px solid var(--accent);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: var(--light);
+        }
+        .denah-item:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(26,77,46,0.2); }
+
+        /* Gambar nyata — tampil penuh, tidak terpotong */
+        .denah-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;   /* <-- contain agar gambar tidak terpotong */
+            background: var(--light);
+            display: block;
+        }
+
+        /* Placeholder untuk slot tanpa gambar */
+        .denah-placeholder {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: var(--light); font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+            gap: 0.5rem; padding: 1rem;
+        }
+        .denah-placeholder svg { width: 46px; height: 46px; fill: var(--light); }
+
+        .denah-caption {
+            padding: 0.75rem 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--primary);
+            text-align: center;
+            font-weight: 600;
+            border-top: 1px solid rgba(201,169,97,0.3);
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 99999;
+            align-items: center; justify-content: center;
+            padding: 1rem;
+        }
+        #lightbox.open { display: flex; }
+        #lightbox img {
+            max-width: 100%; max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        #lightbox-close {
+            position: absolute; top: 16px; right: 20px;
+            color: white; font-size: 2.5rem; cursor: pointer;
+            line-height: 1; background: none; border: none;
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0.85; transition: opacity 0.2s;
+        }
+        #lightbox-close:hover { opacity: 1; }
+        #lightbox-caption {
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            color: var(--accent); font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem; text-align: center;
+        }
 
         .rsvp-section { background: var(--light); }
         .rsvp-container { max-width: 600px; margin: 0 auto; background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
@@ -254,17 +338,33 @@
         .footer-ornament { margin: 3rem 0 1rem; font-size: 2rem; color: var(--accent); }
         .copyright { font-size: 0.9rem; opacity: 0.7; margin-top: 2rem; }
 
+        /* ============================================================
+           RESPONSIVE MOBILE — tambahan perbaikan
+        ============================================================ */
         @media (max-width: 768px) {
-            .cover-title { font-size: 2.2rem; }
-            .cover-bismillah { font-size: 1.5rem; }
-            .cover-salam { font-size: 0.95rem; }
-            .cover-message { padding: 1.4rem 1.5rem; }
-            .cover-message .isi, .cover-message .penutup { font-size: 0.82rem; }
-            .cover-message .nama-bayi-msg { font-size: 1.25rem; }
-            .countdown-value { font-size: 2rem; width: 58px; height: 58px; }
-            .countdown-timer { gap: 0.8rem; }
-            .countdown-label-text { font-size: 0.72rem; }
-            .open-button { padding: 0.875rem 2rem; font-size: 1rem; }
+            /* Cover */
+            .cover-content { padding: 1.8rem 1.2rem 2.5rem; }
+            .cover-bismillah { font-size: 1.55rem; }
+            .cover-salam { font-size: 0.88rem; }
+            .cover-title { font-size: 2rem; }
+            .cover-baby-name { font-size: 1.5rem; }
+            .cover-header-block { margin-bottom: 1.1rem; }
+            .cover-message { padding: 1.1rem 1.2rem; margin-bottom: 1.1rem; }
+            .cover-message .isi, .cover-message .penutup { font-size: 0.78rem; line-height: 1.75; }
+            .cover-message .nama-bayi-msg { font-size: 1.15rem; }
+            .cover-message .yth { font-size: 0.88rem; }
+            .cover-message .wassalam { font-size: 0.82rem; }
+
+            /* Countdown */
+            .countdown-value { font-size: 1.8rem; width: 54px; height: 54px; }
+            .countdown-timer { gap: 0.6rem; }
+            .countdown-label-text { font-size: 0.68rem; }
+            .countdown-container { margin-bottom: 1.1rem; }
+
+            .open-button { padding: 0.8rem 1.8rem; font-size: 0.9rem; letter-spacing: 1px; }
+            .cover-footer { font-size: 0.82rem; margin-top: 1.2rem; }
+
+            /* Hero */
             .hero-title { font-size: 2.5rem; }
             .bismillah { font-size: 1.5rem; }
             .section-title { font-size: 2.2rem; }
@@ -276,6 +376,10 @@
             .rsvp-container, .wishes-form { padding: 2rem; }
             .wish-message { padding-left: 0; margin-top: 1rem; }
             #musicPlayer { bottom: 15px; right: 15px; }
+
+            /* Denah gambar mobile */
+            .denah-item img { height: 200px; }
+            .denah-placeholder { height: 200px; }
         }
 
         html { scroll-behavior: smooth; }
@@ -296,19 +400,29 @@
         </button>
     </div>
 
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption"></div>
+    </div>
+
     <!-- Cover Page -->
     <div id="coverPage">
         <div class="cover-ornament-top"></div>
         <div class="cover-ornament-bottom"></div>
         <div class="cover-content">
 
-            <div class="cover-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
-            <div class="cover-salam"><i>Assalamu'alaikum Warahmatullahi Wabarakatuh</i></div>
-            <h1 class="cover-title">Tasmiyah dan Aqiqah</h1>
-            <div class="cover-divider"></div>
-            <p class="cover-baby-name">MUHAMMAD ZULFIKAR</p>
+            <!-- Bismillah, salam, judul & nama — selalu tampil di atas -->
+            <div class="cover-header-block">
+                <div class="cover-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+                <div class="cover-salam"><i>Assalamu'alaikum Warahmatullahi Wabarakatuh</i></div>
+                <h1 class="cover-title">Tasmiyah dan Aqiqah</h1>
+                <div class="cover-divider"></div>
+                <p class="cover-baby-name">MUHAMMAD ZULFIKAR</p>
+            </div>
 
-            <!-- ===== PESAN UNDANGAN ===== -->
+            <!-- Pesan undangan -->
             <div class="cover-message">
                 <p class="yth">Yth. Bapak / Ibu / Saudara / i</p>
                 <p class="isi">
@@ -326,6 +440,7 @@
                 <p class="wassalam"><i>Wassalamu'alaikum Warahmatullahi Wabarakatuh</i></p>
             </div>
 
+            <!-- Countdown -->
             <div class="countdown-container">
                 <p class="countdown-label">MENUJU HARI BAHAGIA...</p>
                 <div class="countdown-timer" id="countdown">
@@ -459,18 +574,48 @@
         </div>
     </section>
 
-    <!-- Denah Section -->
+    <!-- Denah Section — PERBAIKAN: gambar contain + lightbox -->
     <section class="denah-section reveal">
         <h2 class="section-title">Denah Lokasi</h2>
-        <p class="section-subtitle">Petunjuk arah menuju lokasi acara</p>
+        <p class="section-subtitle">Petunjuk arah menuju lokasi acara • Klik gambar untuk memperbesar</p>
         <div class="denah-grid">
-            <div class="denah-item"><div class="denah-placeholder"><svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
-                <p>Peta Area 1</p>
-                <img src="../image/denah.png" alt="Denah 1"></div>
+
+            <!-- Slot 1: gambar nyata dari ../image/denah.png -->
+            <div class="denah-item" onclick="openLightbox('../image/denah.png', 'Peta Area 1')">
+                <img src="../image/denah.png" alt="Peta Area 1" onerror="this.parentElement.querySelector('.denah-placeholder').style.display='flex'; this.style.display='none';">
+                <div class="denah-placeholder" style="display:none;">
+                    <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
+                    <p>Peta Area 1</p>
+                </div>
+                <div class="denah-caption">🗺 Peta Area 1</div>
             </div>
-            <div class="denah-item"><div class="denah-placeholder"><svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg><p>Peta Area 2</p></div></div>
-            <div class="denah-item"><div class="denah-placeholder"><svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg><p>Peta Jalan</p></div></div>
-            <div class="denah-item"><div class="denah-placeholder"><svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg><p>Detail Rumah</p></div></div>
+
+            <!-- Slot 2: placeholder -->
+            <div class="denah-item" onclick="openLightbox('', 'Peta Area 2')">
+                <div class="denah-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
+                    <p>Peta Area 2</p>
+                </div>
+                <div class="denah-caption">🗺 Peta Area 2</div>
+            </div>
+
+            <!-- Slot 3: placeholder -->
+            <div class="denah-item" onclick="openLightbox('', 'Peta Jalan')">
+                <div class="denah-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
+                    <p>Peta Jalan</p>
+                </div>
+                <div class="denah-caption">🛣 Peta Jalan</div>
+            </div>
+
+            <!-- Slot 4: placeholder -->
+            <div class="denah-item" onclick="openLightbox('', 'Detail Rumah')">
+                <div class="denah-placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
+                    <p>Detail Rumah</p>
+                </div>
+                <div class="denah-caption">🏠 Detail Rumah</div>
+            </div>
         </div>
     </section>
 
@@ -660,6 +805,30 @@
             playMusic();
             setTimeout(function() { document.getElementById('loading').classList.add('hidden'); }, 1500);
         }
+
+        /* ============================================================
+           LIGHTBOX — buka gambar penuh
+        ============================================================ */
+        function openLightbox(src, caption) {
+            if (!src) return; // jika belum ada gambar, abaikan
+            const lb  = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            img.src   = src;
+            cap.textContent = caption || '';
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Tutup lightbox dengan tombol ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
 
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
