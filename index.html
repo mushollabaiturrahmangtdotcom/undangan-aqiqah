@@ -26,7 +26,7 @@
         .music-btn.playing::before { opacity: 1; animation: spin-ring 4s linear infinite; }
         @keyframes spin-ring { to { transform: rotate(360deg); } }
 
-        /* ===== COVER PAGE — FIT IN ONE SCREEN ===== */
+        /* ===== COVER PAGE ===== */
         #coverPage {
             position: fixed; inset: 0;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -39,10 +39,7 @@
         .cover-ornament-top { position: absolute; top: 0; left: 0; right: 0; height: 120px; background: radial-gradient(ellipse at top, rgba(201,169,97,0.2) 0%, transparent 70%); pointer-events: none; }
         .cover-ornament-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: radial-gradient(ellipse at bottom, rgba(201,169,97,0.2) 0%, transparent 70%); pointer-events: none; }
 
-        .cover-corner {
-            position: absolute; width: 100px; height: 100px;
-            pointer-events: none; opacity: 0.3;
-        }
+        .cover-corner { position: absolute; width: 100px; height: 100px; pointer-events: none; opacity: 0.3; }
         .cover-corner-tl { top: 20px; left: 20px; }
         .cover-corner-tr { top: 20px; right: 20px; transform: scaleX(-1); }
         .cover-corner-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
@@ -77,11 +74,7 @@
             animation: fadeInUp 1s ease-out 0.9s backwards;
             width: 100%;
         }
-        .cover-message .yth-compact {
-            font-size: 0.72rem;
-            color: rgba(248,246,241,0.88);
-            font-weight: 300; line-height: 1.6; text-align: center;
-        }
+        .cover-message .yth-compact { font-size: 0.72rem; color: rgba(248,246,241,0.88); font-weight: 300; line-height: 1.6; text-align: center; }
         .cover-message .yth-compact strong { color: var(--accent); font-weight: 600; }
 
         .countdown-container { animation: fadeInUp 1s ease-out 1s backwards; width: 100%; }
@@ -145,150 +138,43 @@
             background: radial-gradient(ellipse 70% 60% at 50% 45%, rgba(201,169,97,0.08) 0%, transparent 70%);
             pointer-events: none; z-index: 0;
         }
-        .hero-corner {
-            position: absolute; width: 140px; height: 140px;
-            pointer-events: none; z-index: 1; opacity: 0.35;
-        }
+        .hero-corner { position: absolute; width: 140px; height: 140px; pointer-events: none; z-index: 1; opacity: 0.35; }
         .hero-corner-tl { top: 24px; left: 24px; }
         .hero-corner-tr { top: 24px; right: 24px; transform: scaleX(-1); }
         .hero-corner-bl { bottom: 24px; left: 24px; transform: scaleY(-1); }
         .hero-corner-br { bottom: 24px; right: 24px; transform: scale(-1); }
         .hero-corner svg { width: 100%; height: 100%; }
-        .hero-line-top, .hero-line-bottom {
-            position: absolute; left: 10%; right: 10%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(201,169,97,0.4), transparent);
-            pointer-events: none; z-index: 1;
-        }
+        .hero-line-top, .hero-line-bottom { position: absolute; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,169,97,0.4), transparent); pointer-events: none; z-index: 1; }
         .hero-line-top { top: 18px; }
         .hero-line-bottom { bottom: 18px; }
-        .hero-content {
-            text-align: center; color: var(--light);
-            z-index: 2; padding: 3rem 2rem;
-            max-width: 720px; width: 100%;
-        }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: rgba(201,169,97,0.12);
-            border: 1px solid rgba(201,169,97,0.35);
-            border-radius: 100px;
-            padding: 0.35rem 1rem;
-            margin-bottom: 1.8rem;
-            opacity: 0; animation: fadeInDown 0.8s ease-out 0.2s forwards;
-        }
-        .hero-badge-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--accent);
-            animation: pulseDot 2s infinite;
-        }
+        .hero-content { text-align: center; color: var(--light); z-index: 2; padding: 3rem 2rem; max-width: 720px; width: 100%; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(201,169,97,0.12); border: 1px solid rgba(201,169,97,0.35); border-radius: 100px; padding: 0.35rem 1rem; margin-bottom: 1.8rem; opacity: 0; animation: fadeInDown 0.8s ease-out 0.2s forwards; }
+        .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulseDot 2s infinite; }
         @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
-        .hero-badge span {
-            font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
-            color: var(--accent); font-weight: 500;
-        }
-        .bismillah {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.6rem; font-weight: 300;
-            margin-bottom: 0.6rem; letter-spacing: 3px;
-            opacity: 0; animation: fadeIn 1s ease-out 0.5s forwards;
-            text-shadow: 0 2px 20px rgba(201,169,97,0.25);
-        }
+        .hero-badge span { font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+        .bismillah { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; margin-bottom: 0.6rem; letter-spacing: 3px; opacity: 0; animation: fadeIn 1s ease-out 0.5s forwards; text-shadow: 0 2px 20px rgba(201,169,97,0.25); }
         @keyframes fadeIn { to { opacity: 1; } }
         @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-        .hero-icon {
-            margin: 0.2rem auto 0.8rem;
-            opacity: 0; animation: fadeIn 1s ease-out 0.7s forwards;
-        }
+        .hero-icon { margin: 0.2rem auto 0.8rem; opacity: 0; animation: fadeIn 1s ease-out 0.7s forwards; }
         .hero-icon svg { width: 52px; height: 52px; filter: drop-shadow(0 0 10px rgba(201,169,97,0.5)); }
-        .hero-ornament-line {
-            display: flex; align-items: center; justify-content: center;
-            gap: 0.6rem; margin: 1rem auto;
-            opacity: 0; animation: fadeIn 1s ease-out 0.9s forwards;
-        }
-        .hero-ornament-line::before,
-        .hero-ornament-line::after {
-            content: '';
-            flex: 1; max-width: 80px; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent));
-        }
+        .hero-ornament-line { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 1rem auto; opacity: 0; animation: fadeIn 1s ease-out 0.9s forwards; }
+        .hero-ornament-line::before, .hero-ornament-line::after { content: ''; flex: 1; max-width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent)); }
         .hero-ornament-line::after { background: linear-gradient(90deg, var(--accent), transparent); }
         .hero-ornament-line span { color: var(--accent); font-size: 1rem; line-height: 1; }
-        .hero-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.6rem; font-weight: 700;
-            line-height: 1.15; margin-bottom: 0.5rem;
-            opacity: 0; animation: fadeIn 1s ease-out 1s forwards;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
-        }
-        .hero-title-sub {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem; font-weight: 300;
-            letter-spacing: 4px; text-transform: uppercase;
-            color: rgba(248,246,241,0.7);
-            opacity: 0; animation: fadeIn 1s ease-out 1.1s forwards;
-            margin-bottom: 1.5rem;
-        }
-        .hero-date-box {
-            display: inline-flex; flex-direction: column; align-items: center;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(201,169,97,0.3);
-            border-radius: 12px;
-            padding: 0.9rem 2.2rem;
-            margin-top: 0.5rem;
-            opacity: 0; animation: fadeIn 1s ease-out 1.3s forwards;
-            backdrop-filter: blur(6px);
-        }
-        .hero-date-label {
-            font-size: 0.62rem; letter-spacing: 3px;
-            text-transform: uppercase; color: var(--accent);
-            margin-bottom: 0.3rem; font-weight: 500;
-        }
-        .hero-date-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem; font-weight: 600; letter-spacing: 1px;
-        }
-        .hero-date-hijri {
-            font-size: 0.72rem; color: rgba(248,246,241,0.6);
-            margin-top: 0.2rem; letter-spacing: 0.5px;
-        }
-        .hero-baby-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.05rem; letter-spacing: 5px;
-            text-transform: uppercase; color: var(--accent);
-            margin-top: 1.8rem;
-            opacity: 0; animation: fadeIn 1s ease-out 1.5s forwards;
-        }
-        .scroll-indicator {
-            position: absolute; bottom: 36px; left: 50%;
-            transform: translateX(-50%);
-            display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-            opacity: 0; animation: fadeIn 1s ease-out 2s forwards;
-            z-index: 2;
-        }
-        .scroll-indicator span {
-            font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
-            color: rgba(248,246,241,0.5);
-        }
-        .scroll-arrow {
-            width: 28px; height: 28px;
-            border: 1px solid rgba(201,169,97,0.4);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            animation: bounceArrow 2s ease-in-out infinite 2.5s;
-        }
+        .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 3.6rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.5rem; opacity: 0; animation: fadeIn 1s ease-out 1s forwards; text-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+        .hero-title-sub { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; color: rgba(248,246,241,0.7); opacity: 0; animation: fadeIn 1s ease-out 1.1s forwards; margin-bottom: 1.5rem; }
+        .hero-date-box { display: inline-flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(201,169,97,0.3); border-radius: 12px; padding: 0.9rem 2.2rem; margin-top: 0.5rem; opacity: 0; animation: fadeIn 1s ease-out 1.3s forwards; backdrop-filter: blur(6px); }
+        .hero-date-label { font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; font-weight: 500; }
+        .hero-date-text { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 1px; }
+        .hero-date-hijri { font-size: 0.72rem; color: rgba(248,246,241,0.6); margin-top: 0.2rem; letter-spacing: 0.5px; }
+        .hero-baby-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; letter-spacing: 5px; text-transform: uppercase; color: var(--accent); margin-top: 1.8rem; opacity: 0; animation: fadeIn 1s ease-out 1.5s forwards; }
+        .scroll-indicator { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0; animation: fadeIn 1s ease-out 2s forwards; z-index: 2; }
+        .scroll-indicator span { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(248,246,241,0.5); }
+        .scroll-arrow { width: 28px; height: 28px; border: 1px solid rgba(201,169,97,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: bounceArrow 2s ease-in-out infinite 2.5s; }
         .scroll-arrow svg { width: 14px; height: 14px; fill: var(--accent); }
         @keyframes bounceArrow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
-        .hero-star {
-            position: absolute; pointer-events: none; z-index: 1;
-            width: 4px; height: 4px; border-radius: 50%;
-            background: var(--accent); opacity: 0;
-            animation: floatStar var(--dur, 6s) ease-in-out infinite var(--delay, 0s);
-        }
-        @keyframes floatStar {
-            0%   { opacity: 0; transform: translateY(0) scale(0.5); }
-            20%  { opacity: 0.6; }
-            80%  { opacity: 0.4; }
-            100% { opacity: 0; transform: translateY(-60px) scale(1.2); }
-        }
+        .hero-star { position: absolute; pointer-events: none; z-index: 1; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: 0; animation: floatStar var(--dur, 6s) ease-in-out infinite var(--delay, 0s); }
+        @keyframes floatStar { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 20% { opacity: 0.6; } 80% { opacity: 0.4; } 100% { opacity: 0; transform: translateY(-60px) scale(1.2); } }
         @media (max-width: 768px) {
             .hero-title { font-size: 2.4rem; }
             .bismillah { font-size: 1.9rem; }
@@ -300,7 +186,7 @@
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; text-align: center; color: var(--primary); margin-bottom: 1rem; }
         .section-subtitle { text-align: center; color: var(--secondary); font-size: 1.1rem; margin-bottom: 4rem; font-weight: 300; }
 
-        /* DOA SECTION (tetap) */
+        /* DOA SECTION */
         .doa-section { background: white; }
         .doa-card { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--light); padding: 3rem; border-radius: 20px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(26,77,46,0.2); }
         .doa-card::before { content: '"'; font-family: 'Cormorant Garamond', serif; font-size: 15rem; position: absolute; top: -50px; left: 30px; opacity: 0.1; line-height: 1; }
@@ -308,11 +194,44 @@
         .doa-latin { font-style: italic; font-size: 1rem; margin-bottom: 1.5rem; opacity: 0.9; }
         .doa-meaning { font-size: 1.1rem; font-weight: 300; line-height: 1.8; }
 
-        /* BABY INFO */
+        /* BABY INFO — dengan foto profil */
         .baby-section { background: var(--light); text-align: center; }
         .baby-info { background: white; padding: 4rem 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); max-width: 700px; margin: 0 auto; }
-        .baby-icon { width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; box-shadow: 0 10px 30px rgba(26,77,46,0.3); }
-        .baby-icon svg { width: 60px; height: 60px; fill: var(--light); }
+
+        /* Foto profil bayi */
+        .baby-photo-wrapper {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        .baby-photo-wrapper::before {
+            content: '';
+            position: absolute; inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--primary), var(--accent));
+            z-index: 0;
+            animation: rotateBorder 6s linear infinite;
+        }
+        @keyframes rotateBorder { to { transform: rotate(360deg); } }
+        .baby-photo-wrapper img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: relative; z-index: 1;
+            border: 4px solid white;
+            display: block;
+        }
+        .baby-photo-placeholder {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; z-index: 1;
+            border: 4px solid white;
+        }
+        .baby-photo-placeholder svg { width: 60px; height: 60px; fill: var(--light); }
+
         .baby-name { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--primary); margin-bottom: 1rem; font-weight: 700; }
         .baby-meaning { font-size: 1.2rem; color: var(--secondary); font-style: italic; margin-bottom: 2rem; }
         .baby-details { display: grid; gap: 1.5rem; text-align: left; margin-top: 3rem; }
@@ -340,9 +259,9 @@
         .address-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 1rem; }
         .address-info p { font-size: 1.1rem; line-height: 1.8; color: var(--text); }
 
-        /* DENAH with Lightbox */
+        /* DENAH — dengan foto nyata */
         .denah-section { background: white; }
-        .denah-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .denah-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
         .denah-item {
             border-radius: 15px;
             border: 2px solid var(--accent);
@@ -355,7 +274,7 @@
         .denah-item img {
             width: 100%;
             height: 220px;
-            object-fit: contain;
+            object-fit: cover;
             background: var(--light);
             display: block;
         }
@@ -377,6 +296,8 @@
             font-weight: 600;
             border-top: 1px solid rgba(201,169,97,0.3);
         }
+
+        /* LIGHTBOX */
         #lightbox {
             display: none;
             position: fixed; inset: 0;
@@ -386,130 +307,14 @@
             padding: 1rem;
         }
         #lightbox.open { display: flex; }
-        #lightbox img {
-            max-width: 100%; max-height: 90vh;
-            object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-        #lightbox-close {
-            position: absolute; top: 16px; right: 20px;
-            color: white; font-size: 2.5rem; cursor: pointer;
-            line-height: 1; background: none; border: none;
-            font-family: 'Montserrat', sans-serif;
-            opacity: 0.85;
-        }
+        #lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        #lightbox-close { position: absolute; top: 16px; right: 20px; color: white; font-size: 2.5rem; cursor: pointer; line-height: 1; background: none; border: none; font-family: 'Montserrat', sans-serif; opacity: 0.85; }
         #lightbox-close:hover { opacity: 1; }
-        #lightbox-caption {
-            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-            color: var(--accent); font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem; text-align: center;
-        }
+        #lightbox-caption { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: var(--accent); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; text-align: center; }
 
-        /* RSVP */
+        /* RSVP — TANPA tombol lihat daftar tamu */
         .rsvp-section { background: var(--light); }
         .rsvp-container { max-width: 600px; margin: 0 auto; background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
-        .btn-lihat-tamu {
-            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-            width: 100%; margin-top: 1rem;
-            padding: 0.8rem 2rem;
-            background: transparent;
-            border: 2px solid var(--accent);
-            border-radius: 50px;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 600;
-            cursor: pointer; transition: all 0.3s;
-        }
-        .btn-lihat-tamu:hover { background: var(--accent); color: var(--dark); }
-        .btn-lihat-tamu svg { width: 18px; height: 18px; fill: currentColor; }
-        #rsvpModal {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.6); z-index: 88888;
-            align-items: center; justify-content: center;
-            padding: 1rem;
-            backdrop-filter: blur(4px);
-        }
-        #rsvpModal.open { display: flex; }
-        .rsvp-modal-box {
-            background: white; border-radius: 20px;
-            width: 100%; max-width: 520px;
-            max-height: 88vh; display: flex; flex-direction: column;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: modalPop 0.3s ease-out;
-            overflow: hidden;
-        }
-        @keyframes modalPop { from{opacity:0;transform:scale(0.93) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
-        .rsvp-modal-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--light); padding: 1.4rem 1.6rem;
-            display: flex; align-items: center; justify-content: space-between;
-            flex-shrink: 0;
-        }
-        .rsvp-modal-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; }
-        .rsvp-modal-header p { font-size: 0.72rem; opacity: 0.8; margin-top: 0.2rem; }
-        .rsvp-modal-close {
-            width: 32px; height: 32px; border-radius: 50%;
-            background: rgba(255,255,255,0.15); border: none;
-            color: white; font-size: 1.1rem; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .rsvp-modal-close:hover { background: rgba(255,255,255,0.3); }
-        .rsvp-tabs {
-            display: flex; border-bottom: 2px solid var(--light);
-            flex-shrink: 0;
-        }
-        .rsvp-tab {
-            flex: 1; padding: 0.8rem; border: none; background: white;
-            font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600;
-            cursor: pointer; transition: all 0.2s; color: var(--text);
-            display: flex; align-items: center; justify-content: center; gap: 0.4rem;
-            border-bottom: 3px solid transparent; margin-bottom: -2px;
-        }
-        .rsvp-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
-        .rsvp-tab-count {
-            background: var(--light); border-radius: 100px;
-            padding: 0.1rem 0.5rem; font-size: 0.7rem;
-        }
-        .rsvp-tab.active .rsvp-tab-count { background: var(--primary); color: white; }
-        .rsvp-modal-body { flex: 1; overflow-y: auto; padding: 1rem 1.4rem; }
-        .tamu-item {
-            display: flex; align-items: center; gap: 0.8rem;
-            padding: 0.7rem 0.8rem; border-radius: 10px;
-            margin-bottom: 0.5rem;
-            background: var(--light);
-            animation: slideInItem 0.3s ease-out;
-        }
-        @keyframes slideInItem { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
-        .tamu-nomor {
-            width: 26px; height: 26px; border-radius: 50%;
-            background: var(--primary); color: white;
-            font-size: 0.72rem; font-weight: 700;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-        .tamu-nama { flex: 1; font-size: 0.88rem; font-weight: 500; color: var(--text); }
-        .tamu-badge { font-size: 0.65rem; padding: 0.15rem 0.55rem; border-radius: 100px; font-weight: 600; }
-        .tamu-badge.hadir { background: rgba(26,77,46,0.1); color: var(--primary); }
-        .tamu-badge.tidak { background: rgba(220,53,69,0.1); color: #dc3545; }
-        .tamu-kosong { text-align: center; padding: 2.5rem 1rem; color: var(--secondary); font-style: italic; }
-        .rsvp-pagination {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0.8rem 1.4rem; border-top: 1px solid var(--light);
-            flex-shrink: 0;
-        }
-        .page-info { font-size: 0.75rem; color: var(--secondary); }
-        .page-btns { display: flex; gap: 0.4rem; }
-        .page-btn {
-            width: 32px; height: 32px; border-radius: 8px;
-            border: 1.5px solid var(--accent); background: white;
-            color: var(--primary); font-size: 0.8rem; font-weight: 600;
-            cursor: pointer; transition: all 0.2s;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .page-btn:hover:not(:disabled) { background: var(--accent); color: var(--dark); }
-        .page-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-        .page-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
-        .page-btn svg { width: 14px; height: 14px; fill: currentColor; }
 
         /* FORM */
         .form-group { margin-bottom: 2rem; }
@@ -529,11 +334,45 @@
         .alert-success { background: rgba(26,77,46,0.1); color: var(--primary); border: 1px solid var(--primary); }
         .alert-error { background: rgba(220,53,69,0.1); color: #dc3545; border: 1px solid #dc3545; }
 
-        /* WISHES SECTION (dari kode lama yang berhasil) */
+        /* WISHES — dengan fitur lihat sedikit / lihat lebih banyak */
         .wishes-section { background: white; }
         .wishes-container { max-width: 800px; margin: 0 auto; }
         .wishes-form { background: var(--light); padding: 3rem; border-radius: 20px; margin-bottom: 3rem; border: 2px solid var(--accent); }
-        .wishes-list { max-height: 600px; overflow-y: auto; padding: 1rem; }
+        .wishes-list-wrapper { position: relative; }
+        .wishes-list {
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+        }
+        .wishes-list.collapsed { max-height: 520px; }
+        .wishes-list.expanded { max-height: 99999px; }
+
+        /* Gradient fade saat collapsed */
+        .wishes-fade {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, white);
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        .wishes-fade.hidden { opacity: 0; pointer-events: none; }
+
+        .btn-toggle-wishes {
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            margin: 1.5rem auto 0;
+            padding: 0.8rem 2.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50px;
+            color: var(--light);
+            font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(26,77,46,0.25);
+        }
+        .btn-toggle-wishes:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,77,46,0.35); }
+        .btn-toggle-wishes svg { width: 18px; height: 18px; fill: currentColor; transition: transform 0.3s; }
+        .btn-toggle-wishes.expanded svg { transform: rotate(180deg); }
+
         .wish-card { background: white; padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem; border-left: 4px solid var(--accent); box-shadow: 0 5px 20px rgba(0,0,0,0.05); animation: slideIn 0.5s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
         .wish-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
@@ -544,7 +383,7 @@
         .no-wishes { text-align: center; padding: 3rem; color: var(--secondary); font-style: italic; }
         .loading-wishes { text-align: center; padding: 2rem; color: var(--secondary); }
 
-        /* AMPLOP DIGITAL */
+        /* AMPLOP DIGITAL — dengan foto QR */
         .amplop-section { background: var(--light); }
         .amplop-container { max-width: 600px; margin: 0 auto; text-align: center; }
         .amplop-intro { margin-bottom: 3rem; color: var(--text); line-height: 1.8; }
@@ -553,8 +392,30 @@
         .phone-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
         .phone-number { font-size: 0.95rem; opacity: 0.9; letter-spacing: 1px; }
         .phone-body { padding: 2rem 1rem; background: var(--light); }
-        .barcode-container { background: white; padding: 2rem; border-radius: 15px; border: 3px dashed var(--accent); margin-bottom: 1.5rem; }
-        .barcode-placeholder { width: 200px; height: 200px; background: linear-gradient(135deg, rgba(26,77,46,0.1), rgba(79,121,66,0.1)); border: 2px solid var(--accent); border-radius: 10px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
+        .barcode-container { background: white; padding: 1.5rem; border-radius: 15px; border: 3px dashed var(--accent); margin-bottom: 1.5rem; }
+
+        /* QR foto nyata */
+        .qr-photo {
+            width: 200px; height: 200px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid rgba(201,169,97,0.3);
+        }
+        .qr-photo img {
+            width: 100%; height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .qr-photo-placeholder {
+            width: 200px; height: 200px;
+            background: linear-gradient(135deg, rgba(26,77,46,0.1), rgba(79,121,66,0.1));
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            margin: 0 auto;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; gap: 0.5rem;
+        }
         .barcode-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--primary); text-align: center; }
         .amplop-note { font-size: 0.9rem; color: var(--secondary); font-style: italic; margin-top: 1.5rem; padding: 1rem; background: rgba(26,77,46,0.05); border-radius: 10px; }
 
@@ -628,7 +489,7 @@
                 <p class="yth-compact">Yth. <strong>Bapak / Ibu / Saudara / i</strong> — dengan hormat kami mengundang kehadiran Anda 🤲</p>
             </div>
             <div class="countdown-container">
-                <p class="countdown-label">MENUJU HARI BAHAGIA...</p>
+                <p class="countdown-label">MENUJU HARI ACARA...</p>
                 <div class="countdown-timer" id="countdown">
                     <div class="countdown-item"><div class="countdown-value" id="days">00</div><span class="countdown-label-text">Hari</span></div>
                     <div class="countdown-item"><div class="countdown-value" id="hours">00</div><span class="countdown-label-text">Jam</span></div>
@@ -658,13 +519,13 @@
         <div class="hero-star" style="left:20%;top:60%;--dur:9s;--delay:1s"></div>
         <div class="hero-star" style="left:80%;top:30%;--dur:8s;--delay:2s"></div>
         <div class="hero-content">
-            <div class="hero-badge"><div class="hero-badge-dot"></div><span>Undangan Resmi</span></div>
+            <div class="hero-badge"><div class="hero-badge-dot"></div><span>-------------------</span></div>
             <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
             <div class="hero-icon"><svg viewBox="0 0 80 80"><path d="M40 8 L43.5 30 L64 20 L49 36 L72 40 L49 44 L64 60 L43.5 50 L40 72 L36.5 50 L16 60 L31 44 L8 40 L31 36 L16 20 L36.5 30 Z" fill="rgba(201,169,97,0.15)" stroke="#c9a961" stroke-width="1"/><circle cx="40" cy="40" r="10" fill="rgba(201,169,97,0.2)" stroke="#c9a961" stroke-width="1"/><circle cx="40" cy="40" r="3" fill="#c9a961"/><circle cx="40" cy="24" r="1.5" fill="#c9a961" opacity="0.6"/><circle cx="40" cy="56" r="1.5" fill="#c9a961" opacity="0.6"/><circle cx="24" cy="40" r="1.5" fill="#c9a961" opacity="0.6"/><circle cx="56" cy="40" r="1.5" fill="#c9a961" opacity="0.6"/></svg></div>
             <div class="hero-ornament-line"><span>✦</span></div>
             <h1 class="hero-title">Undangan<br>Aqiqah & Tasmiyah</h1>
             <p class="hero-title-sub">Putra Pertama Kami</p>
-            <div class="hero-date-box"><span class="hero-date-label">📅 Hari Pelaksanaan</span><span class="hero-date-text">Senin, 27 April 2026</span><span class="hero-date-hijri">29 Syawal 1447 H • Pukul 09.00 WITA</span></div>
+            <div class="hero-date-box"><span class="hero-date-label">📅 Hari Pelaksanaan</span><span class="hero-date-text">Senin, 27 April 2026</span><span class="hero-date-hijri">09 Dzulqa'dah 1447 H • Pukul 09.00 WITA</span></div>
             <p class="hero-baby-name">✦ Muhammad Zulfikar ✦</p>
         </div>
         <div class="scroll-indicator"><span>Geser ke bawah</span><div class="scroll-arrow"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div></div>
@@ -681,12 +542,19 @@
         </div>
     </section>
 
-    <!-- BABY INFO -->
+    <!-- BABY INFO — dengan foto profil -->
     <section class="baby-section reveal">
         <h2 class="section-title">Putra Kami</h2>
         <p class="section-subtitle">Yang Telah Diamanahkan Allah SWT</p>
         <div class="baby-info">
-            <div class="baby-icon"><svg viewBox="0 0 24 24"><path d="M12 2C10.9 2 10 2.9 10 4C10 5.1 10.9 6 12 6C13.1 6 14 5.1 14 4C14 2.9 13.1 2 12 2M15.9 8.1C15.5 7.7 14.8 7.7 14.4 8.1L12 10.5L9.6 8.1C9.2 7.7 8.5 7.7 8.1 8.1C7.7 8.5 7.7 9.2 8.1 9.6L10 11.5V16C10 16.6 10.4 17 11 17H13C13.6 17 14 16.6 14 16V11.5L15.9 9.6C16.3 9.2 16.3 8.5 15.9 8.1M6 18C6 19.1 6.9 20 8 20H16C17.1 20 18 19.1 18 18V17H6V18Z"/></svg></div>
+            <!-- Foto profil bayi — letakkan file "profil.jpg/png" di folder yang sama -->
+            <div class="baby-photo-wrapper">
+                <img src="image/profil.jpg" alt="Foto Muhammad Zulfikar"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="baby-photo-placeholder" style="display:none;">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C10.9 2 10 2.9 10 4C10 5.1 10.9 6 12 6C13.1 6 14 5.1 14 4C14 2.9 13.1 2 12 2M15.9 8.1C15.5 7.7 14.8 7.7 14.4 8.1L12 10.5L9.6 8.1C9.2 7.7 8.5 7.7 8.1 8.1C7.7 8.5 7.7 9.2 8.1 9.6L10 11.5V16C10 16.6 10.4 17 11 17H13C13.6 17 14 16.6 14 16V11.5L15.9 9.6C16.3 9.2 16.3 8.5 15.9 8.1M6 18C6 19.1 6.9 20 8 20H16C17.1 20 18 19.1 18 18V17H6V18Z"/></svg>
+                </div>
+            </div>
             <h1 class="baby-name">MUHAMMAD ZULFIKAR</h1>
             <p class="baby-meaning">"Putra Pertama dari Bapak Rahmatullah S dan Ibu Nur Saidah"</p>
             <div class="baby-details">
@@ -715,37 +583,64 @@
         <p class="section-subtitle">Lokasi pelaksanaan acara</p>
         <div class="map-container">
             <div class="map-wrapper"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1317.1269995314403!2d115.950266!3d-3.472196!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de8b6d479b95091%3A0x977587313dac87ca!2sGXH2%2B25%2C%20Pd.%20Butun%2C%20Kec.%20Batulicin%2C%20Kabupaten%20Tanah%20Bumbu%2C%20Kalimantan%20Selatan%2072273!5e1!3m2!1sid!2sid!4v1776757553544!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
-            <div class="address-info"><h3>Alamat Lengkap</h3><p>Rumah Bapak Jusmani bin Ahwani<br>Jalan PDSB RT. 003 RW. 002<br>Kelurahan Gunung Tinggi Kecamatan Batulicin<br>Kabupaten Tanah Bumbu, Kal-Sel. 72214</p></div>
+            <div class="address-info"><h3>Alamat Lengkap</h3><p>Jalan PDSB RT. 003 RW. 002<br>Kelurahan Gunung Tinggi Kecamatan Batulicin<br>Kabupaten Tanah Bumbu, Kal-Sel. 72214</p></div>
         </div>
     </section>
 
-    <!-- DENAH -->
+    <!-- DENAH — dengan foto peta, jalan1, jalan2, gambar_rumah -->
     <section class="denah-section reveal">
         <h2 class="section-title">Denah Lokasi</h2>
         <p class="section-subtitle">Petunjuk arah menuju lokasi acara • Klik gambar untuk memperbesar</p>
         <div class="denah-grid">
-            <div class="denah-item" onclick="openLightbox('../image/denah.png', 'Peta Area 1')">
-                <img src="../image/denah.png" alt="Peta Area 1" onerror="this.parentElement.querySelector('.denah-placeholder').style.display='flex'; this.style.display='none';">
-                <div class="denah-placeholder" style="display:none;"><svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg><p>Peta Area 1</p></div>
-                <div class="denah-caption">🗺 Peta Area 1</div>
+
+            <!-- Foto 1: peta -->
+            <div class="denah-item" onclick="openLightboxAuto('peta', 'Peta Area')">
+                <img id="img-peta" src="image/denah.jpg" alt="Peta Area"
+                     onerror="tryNextExt('peta', ['jpg','jpeg','png','webp'], 0, 'img-peta', 'ph-peta')">
+                <div id="ph-peta" class="denah-placeholder" style="display:none;">
+                    <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
+                    <p>Peta Area</p>
+                </div>
+                <div class="denah-caption">🗺 Denah Alamat</div>
             </div>
-            <div class="denah-item" onclick="openLightbox('', 'Peta Area 2')"><div class="denah-placeholder"><svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg><p>Peta Area 2</p></div><div class="denah-caption">🗺 Peta Area 2</div></div>
-            <div class="denah-item" onclick="openLightbox('', 'Peta Jalan')"><div class="denah-placeholder"><svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg><p>Peta Jalan</p></div><div class="denah-caption">🛣 Peta Jalan</div></div>
-            <div class="denah-item" onclick="openLightbox('', 'Detail Rumah')"><div class="denah-placeholder"><svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg><p>Detail Rumah</p></div><div class="denah-caption">🏠 Detail Rumah</div></div>
+
+            <!-- Foto 2: jalan1 -->
+            <div class="denah-item" onclick="openLightboxAuto('jalan1', 'Petunjuk Jalan 1')">
+                <img id="img-jalan1" src="image/jalan1.jpg" alt="Petunjuk Jalan 1"
+                     onerror="tryNextExt('jalan1', ['jpg','jpeg','png','webp'], 0, 'img-jalan1', 'ph-jalan1')">
+                <div id="ph-jalan1" class="denah-placeholder" style="display:none;">
+                    <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
+                    <p>Petunjuk Jalan 1</p>
+                </div>
+                <div class="denah-caption">🛣 Petunjuk Jalan 1</div>
+            </div>
+
+            <!-- Foto 3: jalan2 -->
+            <div class="denah-item" onclick="openLightboxAuto('jalan2', 'Petunjuk Jalan 2')">
+                <img id="img-jalan2" src="image/jalan2.jpg" alt="Petunjuk Jalan 2"
+                     onerror="tryNextExt('jalan2', ['jpg','jpeg','png','webp'], 0, 'img-jalan2', 'ph-jalan2')">
+                <div id="ph-jalan2" class="denah-placeholder" style="display:none;">
+                    <svg viewBox="0 0 24 24"><path d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.33,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.67,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z"/></svg>
+                    <p>Petunjuk Jalan 2</p>
+                </div>
+                <div class="denah-caption">🛣 Petunjuk Jalan 2</div>
+            </div>
+
+            <!-- Foto 4: gambar_rumah -->
+            <div class="denah-item" onclick="openLightboxAuto('gambar_rumah', 'Tampak Rumah')">
+                <img id="img-gambar_rumah" src="image/gambar_rumah.jpg" alt="Tampak Rumah"
+                     onerror="tryNextExt('gambar_rumah', ['jpg','jpeg','png','webp'], 0, 'img-gambar_rumah', 'ph-gambar_rumah')">
+                <div id="ph-gambar_rumah" class="denah-placeholder" style="display:none;">
+                    <svg viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>
+                    <p>Tampak Rumah</p>
+                </div>
+                <div class="denah-caption">🏠 Tampak Rumah</div>
+            </div>
+
         </div>
     </section>
 
-    <!-- RSVP MODAL -->
-    <div id="rsvpModal" onclick="handleModalClick(event)">
-        <div class="rsvp-modal-box">
-            <div class="rsvp-modal-header"><div><h3>📋 Daftar Tamu</h3><p id="modalSubtitle">Memuat data...</p></div><button class="rsvp-modal-close" onclick="closeRsvpModal()">✕</button></div>
-            <div class="rsvp-tabs"><button class="rsvp-tab active" id="tabHadir" onclick="switchTab('Hadir')">✅ Hadir <span class="rsvp-tab-count" id="countHadir">0</span></button><button class="rsvp-tab" id="tabTidak" onclick="switchTab('Tidak Hadir')">❌ Tidak Hadir <span class="rsvp-tab-count" id="countTidak">0</span></button></div>
-            <div class="rsvp-modal-body" id="tamuList"><div class="rsvp-loading">Memuat daftar tamu...</div></div>
-            <div class="rsvp-pagination"><span class="page-info" id="pageInfo">-</span><div class="page-btns" id="pageBtns"></div></div>
-        </div>
-    </div>
-
-    <!-- RSVP FORM -->
+    <!-- RSVP FORM — TANPA tombol "Lihat Daftar Tamu" -->
     <section class="rsvp-section reveal">
         <h2 class="section-title">Konfirmasi Kehadiran</h2>
         <p class="section-subtitle">Mohon konfirmasi kehadiran Anda</p>
@@ -756,11 +651,10 @@
                 <div class="form-group"><label>Konfirmasi Kehadiran *</label><div class="radio-group"><div class="radio-option"><input type="radio" id="hadir" name="kehadiran" value="Hadir" required><label for="hadir">✅ Ya, Saya akan Hadir</label></div><div class="radio-option"><input type="radio" id="tidakHadir" name="kehadiran" value="Tidak Hadir" required><label for="tidakHadir">❌ Tidak Dapat Hadir</label></div></div></div>
                 <button type="submit" class="submit-btn" id="rsvpSubmitBtn">Kirim Konfirmasi</button>
             </form>
-            <button class="btn-lihat-tamu" onclick="openRsvpModal()"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> Lihat Daftar Tamu</button>
         </div>
     </section>
 
-    <!-- UCAPAN & DOA (WISHES) - dari kode lama yang berhasil -->
+    <!-- UCAPAN & DOA — dengan lihat sedikit / lihat lebih banyak -->
     <section class="wishes-section reveal">
         <h2 class="section-title">Ucapan & Doa</h2>
         <p class="section-subtitle">Berikan ucapan dan doa terbaik untuk Muhammad Zulfikar</p>
@@ -773,17 +667,45 @@
                     <button type="submit" class="submit-btn" id="wishSubmitBtn">Kirim Ucapan</button>
                 </form>
             </div>
-            <div id="wishesList" class="wishes-list"><div class="loading-wishes">Memuat ucapan...</div></div>
+
+            <!-- List ucapan dengan toggle -->
+            <div class="wishes-list-wrapper">
+                <div id="wishesList" class="wishes-list collapsed">
+                    <div class="loading-wishes">Memuat ucapan...</div>
+                </div>
+                <div class="wishes-fade" id="wishesFade"></div>
+            </div>
+
+            <!-- Tombol toggle -->
+            <button class="btn-toggle-wishes" id="btnToggleWishes" onclick="toggleWishes()" style="display:none;">
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                <span id="btnToggleText">Lihat Lebih Banyak</span>
+            </button>
         </div>
     </section>
 
-    <!-- AMPLOP DIGITAL -->
+    <!-- AMPLOP DIGITAL — dengan foto QR (qrisku.jpg/png) -->
     <section class="amplop-section reveal">
         <h2 class="section-title">Amplop Digital</h2>
         <p class="section-subtitle">Bagi yang ingin memberikan hadiah</p>
         <div class="amplop-container">
             <p class="amplop-intro">Tanpa mengurangi rasa hormat, bagi Bapak/Ibu/Saudara/i yang ingin memberikan tanda kasih untuk Muhammad Zulfikar, dapat melalui:</p>
-            <div class="phone-frame"><div class="phone-header"><h3>💳 GoPay</h3><div class="phone-number">Rahmatullah S<br>0821 5574 6695</div></div><div class="phone-body"><div class="barcode-container"><div class="barcode-placeholder"><p class="barcode-text">Sisipkan QR Code<br>GoPay disini</p></div></div><p class="amplop-note">✨ Scan QR Code di atas untuk memberikan hadiah melalui GoPay</p></div></div>
+            <div class="phone-frame">
+                <div class="phone-header">
+                    <h3>💳 GoPay</h3>
+                    <div class="phone-number">Rahmatullah S<br>0821 5574 6695</div>
+                </div>
+                <div class="phone-body">
+                    <div class="barcode-container">
+                        <!-- Foto QR Code — letakkan file "qrisku.jpg" atau "qrisku.png" di folder yang sama -->
+                        <div class="qr-photo">
+                            <img src="image/qrisku.jpg" alt="QR Code GoPay"
+                                 onerror="this.src='qrisku.png'; this.onerror=function(){ this.parentElement.innerHTML='<div class=\'qr-photo-placeholder\'><svg viewBox=\'0 0 24 24\' width=\'48\' height=\'48\' fill=\'#c9a961\'><path d=\'M3 11h8V3H3v8zm2-6h4v4H5V5zm8-2v8h8V3h-8zm6 6h-4V5h4v4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm13 4h-4v-2h2v-2h2v4zm0-10h-2V9h2v2zm0 4h-2v-2h2v2zm-2 2h-2v2h2v-2zm-4-4h2v2h-2v-2zm0 4h2v2h-2v-2z\'/></svg><p class=\'barcode-text\'>Sisipkan QR Code<br>GoPay di sini</p></div>'; this.onerror=null; }">
+                        </div>
+                    </div>
+                    <p class="amplop-note">✨ Scan QR Code di atas untuk memberikan hadiah melalui GoPay</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -802,7 +724,6 @@
 
     <script>
         // ==================== KONFIGURASI ====================
-        // GANTI URL INI DENGAN APPS SCRIPT ANDA YANG SUDAH BERHASIL DI KODE LAMA
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxN6sOBuR5qGlQf6PsusYoW9Bm8zJIf4BB7EmUGQcjwNRZTppoYEBIBg4Lp02sverOw/exec';
         const eventDate = new Date(2026, 3, 27, 9, 0, 0);
 
@@ -814,27 +735,27 @@
                 document.getElementById('countdown').innerHTML = '<p style="font-family:Cormorant Garamond,serif;font-size:1.5rem;color:var(--accent);">Acara Sedang Berlangsung!</p>';
                 return;
             }
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            if (document.getElementById('days')) document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            if (document.getElementById('hours')) document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            if (document.getElementById('minutes')) document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            if (document.getElementById('seconds')) document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            if (document.getElementById('days'))    document.getElementById('days').textContent    = days.toString().padStart(2,'0');
+            if (document.getElementById('hours'))   document.getElementById('hours').textContent   = hours.toString().padStart(2,'0');
+            if (document.getElementById('minutes')) document.getElementById('minutes').textContent = minutes.toString().padStart(2,'0');
+            if (document.getElementById('seconds')) document.getElementById('seconds').textContent = seconds.toString().padStart(2,'0');
         }
         document.addEventListener('DOMContentLoaded', function() {
             updateCountdown();
             setInterval(updateCountdown, 1000);
-            loadWishes();  // memuat ucapan
+            loadWishes();
         });
 
         // ==================== MUSIC PLAYER ====================
-        const audio = document.getElementById('bgMusic');
+        const audio    = document.getElementById('bgMusic');
         const musicBtn = document.getElementById('musicBtn');
         const iconPlay = document.getElementById('iconPlay');
-        const iconPause = document.getElementById('iconPause');
-        let isMusicOn = false;
+        const iconPause= document.getElementById('iconPause');
+        let isMusicOn  = false;
 
         function playMusic() {
             audio.volume = 0;
@@ -844,44 +765,25 @@
                 updateMusicUI(true);
             }).catch(function(err) { console.log('Audio play failed:', err); });
         }
-
         function toggleMusic() {
             if (isMusicOn) {
-                fadeVolume(audio.volume, 0, 800, function() {
-                    audio.pause();
-                    isMusicOn = false;
-                    updateMusicUI(false);
-                });
+                fadeVolume(audio.volume, 0, 800, function() { audio.pause(); isMusicOn = false; updateMusicUI(false); });
             } else {
-                audio.play().then(function() {
-                    isMusicOn = true;
-                    fadeVolume(0, 0.7, 800);
-                    updateMusicUI(true);
-                });
+                audio.play().then(function() { isMusicOn = true; fadeVolume(0, 0.7, 800); updateMusicUI(true); });
             }
         }
-
         function updateMusicUI(playing) {
-            if (playing) {
-                musicBtn.classList.add('playing');
-                iconPlay.style.display = 'none';
-                iconPause.style.display = 'block';
-            } else {
-                musicBtn.classList.remove('playing');
-                iconPlay.style.display = 'block';
-                iconPause.style.display = 'none';
-            }
+            if (playing) { musicBtn.classList.add('playing'); iconPlay.style.display='none'; iconPause.style.display='block'; }
+            else         { musicBtn.classList.remove('playing'); iconPlay.style.display='block'; iconPause.style.display='none'; }
         }
-
         function fadeVolume(from, to, duration, callback) {
-            const steps = 20, stepTime = duration / steps, diff = to - from;
-            let current = from, step = 0;
-            const timer = setInterval(function() {
-                step++;
-                current = from + (diff * step / steps);
-                audio.volume = Math.min(1, Math.max(0, current));
-                if (step >= steps) { clearInterval(timer); if (callback) callback(); }
-            }, stepTime);
+            const steps=20, stepTime=duration/steps, diff=to-from;
+            let current=from, step=0;
+            const timer=setInterval(function(){
+                step++; current=from+(diff*step/steps);
+                audio.volume=Math.min(1,Math.max(0,current));
+                if(step>=steps){clearInterval(timer);if(callback)callback();}
+            },stepTime);
         }
 
         // ==================== COVER & LOADING ====================
@@ -891,13 +793,40 @@
             document.getElementById('musicPlayer').style.display = 'block';
             document.body.classList.remove('no-scroll');
             playMusic();
-            setTimeout(function() { document.getElementById('loading').classList.add('hidden'); }, 1500);
+            setTimeout(function(){ document.getElementById('loading').classList.add('hidden'); }, 1500);
+        }
+
+        // ==================== DENAH — helper ekstensi gambar ====================
+        const exts = ['jpg','jpeg','png','webp'];
+        function tryNextExt(basename, extList, idx, imgId, phId) {
+            // coba ekstensi berikutnya
+            const nextIdx = idx + 1;
+            if (nextIdx >= extList.length) {
+                // semua gagal, tampilkan placeholder
+                const img = document.getElementById(imgId);
+                const ph  = document.getElementById(phId);
+                if (img) img.style.display = 'none';
+                if (ph)  ph.style.display  = 'flex';
+                return;
+            }
+            const img = document.getElementById(imgId);
+            if (img) {
+                img.onerror = function() { tryNextExt(basename, extList, nextIdx, imgId, phId); };
+                img.src = basename + '.' + extList[nextIdx];
+            }
+        }
+
+        function openLightboxAuto(basename, caption) {
+            // Cari src aktif dari elemen img
+            const imgEl = document.getElementById('img-' + basename);
+            if (!imgEl || imgEl.style.display === 'none') return; // placeholder aktif, tidak ada gambar
+            openLightbox(imgEl.src, caption);
         }
 
         // ==================== LIGHTBOX ====================
         function openLightbox(src, caption) {
             if (!src) return;
-            const lb = document.getElementById('lightbox');
+            const lb  = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
             const cap = document.getElementById('lightbox-caption');
             img.src = src;
@@ -913,8 +842,8 @@
         // ==================== REVEAL ON SCROLL ====================
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 150)
+            for (var i=0;i<reveals.length;i++){
+                if(reveals[i].getBoundingClientRect().top < window.innerHeight-150)
                     reveals[i].classList.add('active');
             }
         }
@@ -925,23 +854,21 @@
         document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('rsvpSubmitBtn');
-            const alertEl = document.getElementById('rsvpAlert');
+            const alertEl   = document.getElementById('rsvpAlert');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Mengirim...';
-            const nama = document.getElementById('rsvpNama').value;
+            const nama      = document.getElementById('rsvpNama').value;
             const kehadiran = document.querySelector('input[name="kehadiran"]:checked').value;
             try {
                 await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'submitRSVP', nama: nama, kehadiran: kehadiran })
+                    method:'POST', mode:'no-cors',
+                    headers:{'Content-Type':'application/json'},
+                    body: JSON.stringify({action:'submitRSVP', nama, kehadiran})
                 });
-                showAlert(alertEl, 'Terima kasih! Konfirmasi kehadiran Anda telah diterima.', 'success');
+                showAlert(alertEl,'Terima kasih! Konfirmasi kehadiran Anda telah diterima.','success');
                 document.getElementById('rsvpForm').reset();
-                if (document.getElementById('rsvpModal').classList.contains('open')) setTimeout(fetchRsvpData, 1000);
-            } catch (error) {
-                showAlert(alertEl, 'Terima kasih! Konfirmasi Anda telah diterima.', 'success');
+            } catch(error) {
+                showAlert(alertEl,'Terima kasih! Konfirmasi Anda telah diterima.','success');
                 document.getElementById('rsvpForm').reset();
             } finally {
                 submitBtn.disabled = false;
@@ -949,7 +876,9 @@
             }
         });
 
-        // ==================== UCAPAN (WISHES) - DARI KODE LAMA YANG BERHASIL ====================
+        // ==================== UCAPAN (WISHES) ====================
+        let wishesExpanded = false;
+
         async function loadWishes() {
             const wishesList = document.getElementById('wishesList');
             try {
@@ -958,20 +887,67 @@
                 if (data.success && data.wishes.length > 0) {
                     wishesList.innerHTML = '';
                     data.wishes.forEach(wish => {
-                        const wishCard = createWishCard(wish);
-                        wishesList.innerHTML += wishCard;
+                        wishesList.innerHTML += createWishCard(wish);
                     });
+                    // tampilkan tombol toggle jika ada ucapan
+                    checkToggleButton();
                 } else {
                     wishesList.innerHTML = '<div class="no-wishes">Belum ada ucapan. Jadilah yang pertama memberikan ucapan!</div>';
+                    document.getElementById('btnToggleWishes').style.display = 'none';
+                    document.getElementById('wishesFade').classList.add('hidden');
                 }
             } catch (error) {
                 wishesList.innerHTML = '<div class="no-wishes">Gagal memuat ucapan. Silakan refresh halaman.</div>';
+                document.getElementById('btnToggleWishes').style.display = 'none';
+                document.getElementById('wishesFade').classList.add('hidden');
+            }
+        }
+
+        function checkToggleButton() {
+            const list = document.getElementById('wishesList');
+            const btn  = document.getElementById('btnToggleWishes');
+            const fade = document.getElementById('wishesFade');
+            // tampilkan tombol hanya jika konten lebih tinggi dari batas collapsed (520px)
+            if (list.scrollHeight > 520) {
+                btn.style.display  = 'flex';
+                fade.classList.remove('hidden');
+            } else {
+                // konten pendek, tidak perlu tombol, expand langsung
+                list.classList.remove('collapsed');
+                list.classList.add('expanded');
+                btn.style.display = 'none';
+                fade.classList.add('hidden');
+            }
+        }
+
+        function toggleWishes() {
+            const list     = document.getElementById('wishesList');
+            const fade     = document.getElementById('wishesFade');
+            const btn      = document.getElementById('btnToggleWishes');
+            const btnText  = document.getElementById('btnToggleText');
+
+            wishesExpanded = !wishesExpanded;
+
+            if (wishesExpanded) {
+                list.classList.remove('collapsed');
+                list.classList.add('expanded');
+                fade.classList.add('hidden');
+                btn.classList.add('expanded');
+                btnText.textContent = 'Tampilkan Lebih Sedikit';
+            } else {
+                list.classList.remove('expanded');
+                list.classList.add('collapsed');
+                fade.classList.remove('hidden');
+                btn.classList.remove('expanded');
+                btnText.textContent = 'Lihat Lebih Banyak';
+                // scroll ke atas bagian ucapan
+                document.querySelector('.wishes-list-wrapper').scrollIntoView({behavior:'smooth', block:'start'});
             }
         }
 
         function createWishCard(wish) {
             const initial = wish.nama.charAt(0).toUpperCase();
-            const date = new Date(wish.timestamp);
+            const date    = new Date(wish.timestamp);
             const formattedDate = formatDate(date);
             return `
                 <div class="wish-card">
@@ -988,127 +964,50 @@
         }
 
         function formatDate(date) {
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            };
+            const options = { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit' };
             return date.toLocaleDateString('id-ID', options);
         }
 
         function escapeHtml(text) {
-            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            const map = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'};
             return text.replace(/[&<>"']/g, m => map[m]);
         }
 
         document.getElementById('wishForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('wishSubmitBtn');
-            const alert = document.getElementById('wishAlert');
+            const alert_el  = document.getElementById('wishAlert');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Mengirim...';
-            const nama = document.getElementById('wishNama').value;
+            const nama  = document.getElementById('wishNama').value;
             const pesan = document.getElementById('wishPesan').value;
             try {
                 await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'submitWish', nama: nama, pesan: pesan })
+                    method:'POST', mode:'no-cors',
+                    headers:{'Content-Type':'application/json'},
+                    body: JSON.stringify({action:'submitWish', nama, pesan})
                 });
-                showAlert(alert, 'Terima kasih! Ucapan Anda telah dikirim.', 'success');
+                showAlert(alert_el,'Terima kasih! Ucapan Anda telah dikirim.','success');
                 document.getElementById('wishForm').reset();
                 setTimeout(loadWishes, 1000);
-            } catch (error) {
-                showAlert(alert, 'Terjadi kesalahan. Silakan coba lagi.', 'error');
+            } catch(error) {
+                showAlert(alert_el,'Terjadi kesalahan. Silakan coba lagi.','error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Kirim Ucapan';
             }
         });
 
-        // ==================== RSVP MODAL (DAFTAR TAMU) ====================
-        let allRsvp = [];
-        let activeTab = 'Hadir';
-        let currentPage = 1;
-        const PER_PAGE = 7;
-
-        async function openRsvpModal() {
-            document.getElementById('rsvpModal').classList.add('open');
-            document.body.style.overflow = 'hidden';
-            await fetchRsvpData();
-        }
-        function closeRsvpModal() {
-            document.getElementById('rsvpModal').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        function handleModalClick(e) { if (e.target === document.getElementById('rsvpModal')) closeRsvpModal(); }
-        async function fetchRsvpData() {
-            document.getElementById('tamuList').innerHTML = '<div class="rsvp-loading">⏳ Memuat daftar tamu...</div>';
-            try {
-                const res = await fetch(SCRIPT_URL + '?action=getRSVP');
-                const data = await res.json();
-                allRsvp = (data && data.success && data.rsvp) ? data.rsvp : [];
-            } catch(e) { allRsvp = []; }
-            updateModalCounts();
-            renderTamuList();
-        }
-        function updateModalCounts() {
-            const jmlHadir = allRsvp.filter(r => r.kehadiran === 'Hadir').length;
-            const jmlTidak = allRsvp.filter(r => r.kehadiran === 'Tidak Hadir').length;
-            document.getElementById('countHadir').textContent = jmlHadir;
-            document.getElementById('countTidak').textContent = jmlTidak;
-            document.getElementById('modalSubtitle').textContent = `${jmlHadir} hadir · ${jmlTidak} tidak hadir · ${allRsvp.length} total`;
-        }
-        function switchTab(tab) {
-            activeTab = tab;
-            currentPage = 1;
-            document.getElementById('tabHadir').classList.toggle('active', tab === 'Hadir');
-            document.getElementById('tabTidak').classList.toggle('active', tab === 'Tidak Hadir');
-            renderTamuList();
-        }
-        function renderTamuList() {
-            const filtered = allRsvp.filter(r => r.kehadiran === activeTab);
-            const total = filtered.length;
-            const totalPg = Math.max(1, Math.ceil(total / PER_PAGE));
-            if (currentPage > totalPg) currentPage = totalPg;
-            const start = (currentPage - 1) * PER_PAGE;
-            const slice = filtered.slice(start, start + PER_PAGE);
-            const listEl = document.getElementById('tamuList');
-            if (total === 0) {
-                listEl.innerHTML = `<div class="tamu-kosong">${activeTab === 'Hadir' ? '😊 Belum ada tamu yang konfirmasi hadir.' : '📭 Belum ada tamu yang menyatakan tidak hadir.'}</div>`;
-            } else {
-                listEl.innerHTML = slice.map((r, i) => {
-                    const no = start + i + 1;
-                    const isHdr = r.kehadiran === 'Hadir';
-                    return `<div class="tamu-item"><div class="tamu-nomor">${no}</div><div class="tamu-nama">${escapeHtml(r.nama)}</div><span class="tamu-badge ${isHdr ? 'hadir' : 'tidak'}">${isHdr ? 'Hadir' : 'Tidak'}</span></div>`;
-                }).join('');
-            }
-            document.getElementById('pageInfo').textContent = total === 0 ? 'Tidak ada data' : `${start+1}–${Math.min(start+PER_PAGE, total)} dari ${total}`;
-            const btnsEl = document.getElementById('pageBtns');
-            if (totalPg <= 1) { btnsEl.innerHTML = ''; return; }
-            let html = `<button class="page-btn" onclick="changePage(${currentPage-1})" ${currentPage===1?'disabled':''}><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>`;
-            let pStart = Math.max(1, currentPage-2);
-            let pEnd = Math.min(totalPg, pStart+4);
-            if (pEnd-pStart < 4) pStart = Math.max(1, pEnd-4);
-            for (let p=pStart; p<=pEnd; p++) html += `<button class="page-btn ${p===currentPage?'active':''}" onclick="changePage(${p})">${p}</button>`;
-            html += `<button class="page-btn" onclick="changePage(${currentPage+1})" ${currentPage===totalPg?'disabled':''}><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>`;
-            btnsEl.innerHTML = html;
-        }
-        function changePage(p) { currentPage = p; renderTamuList(); document.getElementById('tamuList').scrollTop = 0; }
-
         // ==================== ALERT ====================
         function showAlert(alertElement, message, type) {
             alertElement.className = `alert alert-${type} show`;
             alertElement.textContent = message;
-            setTimeout(() => alertElement.classList.remove('show'), 5000);
+            setTimeout(()=> alertElement.classList.remove('show'), 5000);
         }
 
-        // ESC key untuk menutup modal
+        // ESC key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') { closeLightbox(); closeRsvpModal(); }
+            if (e.key === 'Escape') { closeLightbox(); }
         });
     </script>
 </body>
